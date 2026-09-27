@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8d9e5">
+  <title>Our Little Story ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="ambient"></div>
+  <div id="particles" aria-hidden="true"></div>
+
+  <div class="music-control" id="musicControl">
+    <button id="musicBtn" class="music-btn" aria-label="Nyalakan atau matikan musik">
+      <span class="music-icon">♫</span>
+      <span class="music-bars"><i></i><i></i><i></i><i></i></span>
+    </button>
+    <span id="musicLabel">Music off</span>
+  </div>
+
+  <main id="app">
+
+    <!-- ==================== PAGE 1 ==================== -->
+    <section class="page page-opening active" id="page1">
+      <div class="opening-orbit orbit-one"></div>
+      <div class="opening-orbit orbit-two"></div>
+
+      <div class="side-gifts left">
+        <span class="mini-gift gift-a">♡</span>
+        <span class="mini-gift gift-b">✦</span>
+        <span class="mini-gift gift-c">♡</span>
+      </div>
+      <div class="side-gifts right">
+        <span class="mini-gift gift-d">✦</span>
+        <span class="mini-gift gift-e">♡</span>
+        <span class="mini-gift gift-f">✦</span>
+      </div>
+
+      <div class="opening-content">
+        <p class="eyebrow">a little surprise, made just for you</p>
+
+        <div class="gift-scene" id="giftScene" role="button" tabindex="0" aria-label="Buka kado">
+          <div class="gift-glow"></div>
+          <div class="gift-sparkles">
+            <span>✦</span><span>·</span><span>✧</span><span>♡</span><span>·</span>
+          </div>
+
+          <div class="gift-box">
+            <div class="gift-lid">
+              <span class="ribbon-horizontal"></span>
+              <span class="lid-bow bow-left"></span>
+              <span class="lid-bow bow-right"></span>
+              <span class="bow-knot"></span>
+            </div>
+            <div class="gift-body">
+              <span class="ribbon-vertical"></span>
+              <span class="gift-shine"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="opening-copy" id="openingCopy">
+          <p class="tiny-note">tap the gift</p>
+          <h1>There is something<br><em>waiting for you.</em></h1>
+          <p class="opening-hint">A small journey. A few memories. And a lot of love.</p>
+        </div>
+
+        <div class="surprise-message" id="surpriseMessage">
+          <p class="eyebrow">for <span data-partner-name>someone special</span></p>
+          <h2>Every little thing here<br>was made with you in mind. ♡</h2>
+          <p>Now, let me take you through our little story.</p>
+          <button class="story-btn" data-next="page2">
+            <span>Begin our story</span><b>→</b>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 2 ==================== -->
+    <section class="page page-letter" id="page2">
+      <div class="chapter-number">01</div>
+      <div class="letter-decor decor-heart">♡</div>
+      <div class="letter-decor decor-star">✦</div>
+
+      <div class="page-inner letter-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">chapter one</p>
+          <h2>A letter I wanted<br><em>you to read.</em></h2>
+          <div class="heading-line"></div>
+        </div>
+
+        <div class="letter" id="letterContent">
+          <!-- ===== TEKS HALAMAN 2 ===== -->
+          <!-- Ganti paragraf di bawah sesuai cerita kalian. -->
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">01</span>
+            <p>Untuk seseorang yang mungkin tidak pernah menyangka akan menemukan surat seperti ini...</p>
+          </article>
+
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">02</span>
+            <p>Aku cuma ingin bilang bahwa kehadiranmu punya tempat yang berbeda dalam hidupku. Ada banyak hal kecil tentang kamu yang mungkin terlihat sederhana, tapi justru hal-hal itu yang sering aku ingat.</p>
+          </article>
+
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">03</span>
+            <p>Terima kasih untuk setiap percakapan, tawa, cerita, dan waktu yang pernah kita bagi. Bahkan hari-hari biasa terasa sedikit lebih berarti ketika ada kamu di dalamnya.</p>
+          </article>
+
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">04</span>
+            <p>Aku tidak tahu bagaimana cerita kita akan berjalan jauh ke depan. Tapi untuk sekarang, aku ingin menikmati setiap halaman yang sedang kita tulis bersama.</p>
+          </article>
+
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">05</span>
+            <p>Kalau suatu hari nanti kita melihat kembali semua ini, semoga kita bisa tersenyum dan bilang bahwa ternyata banyak sekali hal indah yang pernah kita lewati bersama.</p>
+          </article>
+
+          <article class="letter-paragraph reveal">
+            <span class="paragraph-no">06</span>
+            <p>Dan kalau ada satu hal yang ingin kusampaikan dari surat kecil ini: terima kasih sudah menjadi bagian dari ceritaku.</p>
+          </article>
+
+          <div class="letter-signature reveal">
+            <span>with all my heart,</span>
+            <strong>your favorite person ♡</strong>
+          </div>
+        </div>
+
+        <div class="bottom-next hidden-next reveal" id="letterNext">
+          <span class="scroll-note">you've reached the end of this chapter</span>
+          <button class="story-btn" data-next="page3">
+            <span>See our memories</span><b>→</b>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 3 ==================== -->
+    <section class="page page-memories" id="page3">
+      <div class="memory-bg-word">memories</div>
+
+      <div class="page-inner memories-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">chapter two</p>
+          <h2>Little moments,<br><em>big memories.</em></h2>
+          <p class="heading-description">Sepuluh potongan kecil dari cerita yang mungkin akan selalu aku simpan.</p>
+        </div>
+
+        <div class="memories-list" id="memoriesList"></div>
+
+        <div class="bottom-next hidden-next reveal" id="memoryNext">
+          <span class="scroll-note">one last chapter remains</span>
+          <button class="story-btn" data-next="page4">
+            <span>Continue to the ending</span><b>→</b>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE 4 ==================== -->
+    <section class="page page-final" id="page4">
+      <div class="moon"></div>
+      <div class="moon-glow"></div>
+      <div class="final-stars"></div>
+      <div class="final-petals"></div>
+
+      <div class="page-inner final-inner">
+        <div class="final-top reveal">
+          <p class="eyebrow">chapter three · the end, for now</p>
+          <h2>And somehow,<br><em>we're here.</em></h2>
+        </div>
+
+        <div class="final-message">
+          <!-- ===== TEKS PENUTUP ===== -->
+          <p class="final-line reveal">Kalau cerita ini adalah sebuah buku, aku mungkin belum mau menutupnya.</p>
+          <p class="final-line reveal">Karena masih ada banyak hari biasa yang ingin kujalani bersamamu, banyak tempat yang ingin kita datangi, dan banyak cerita yang belum sempat kita tulis.</p>
+          <p class="final-line reveal">Jadi untuk sekarang, anggap saja website kecil ini sebagai satu halaman yang kusimpan untukmu.</p>
+        </div>
+
+        <div class="final-ending reveal" id="finalEnding">
+          <div class="ending-heart">♡</div>
+          <h3>Thank you for being<br><em>part of my story.</em></h3>
+          <p>— always, <span data-partner-name>my favorite person</span> —</p>
+          <div class="ending-sparkles">✦　♡　✦　♡　✦</div>
+        </div>
+
+        <button class="restart-btn reveal" id="restartBtn">↻ read it again</button>
+      </div>
+    </section>
+
+  </main>
+
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
