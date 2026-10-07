@@ -1,679 +1,95 @@
+```css
 /* =========================================================
-   CONFIGURATION
+   ROOT
 ========================================================= */
 
-const CONFIG = {
+:root {
+    --black: #09080c;
+    --black-soft: #111017;
+    --cream: #f3eee5;
+    --cream-dark: #d8d0c2;
 
-    partnerName: "someone special",
+    --pink: #e8a7b7;
+    --pink-light: #f5c9d4;
 
-    music: "audio/lagu.mp3",
+    --muted: #99939d;
 
-    memories: [
-
-        {
-            image: "images/foto1.jpg",
-            number: "01",
-            title: "The beginning",
-            caption: "Satu momen kecil yang ternyata jadi awal dari banyak cerita."
-        },
-
-        {
-            image: "images/foto2.jpg",
-            number: "02",
-            title: "That day",
-            caption: "Hari biasa yang akhirnya punya tempat spesial."
-        },
-
-        {
-            image: "images/foto3.jpg",
-            number: "03",
-            title: "Little things",
-            caption: "Hal-hal kecil yang mungkin sederhana, tapi selalu berhasil bikin senyum."
-        },
-
-        {
-            image: "images/foto4.jpg",
-            number: "04",
-            title: "Another memory",
-            caption: "Satu frame, satu cerita, satu bagian kecil dari perjalanan kita."
-        },
-
-        {
-            image: "images/foto5.jpg",
-            number: "05",
-            title: "Good days",
-            caption: "Beberapa hari memang terasa lebih ringan saat dijalani bersama."
-        },
-
-        {
-            image: "images/foto6.jpg",
-            number: "06",
-            title: "Somewhere between",
-            caption: "Di antara banyak hal yang terjadi, momen ini tetap berhasil tersimpan."
-        },
-
-        {
-            image: "images/foto7.jpg",
-            number: "07",
-            title: "A quiet moment",
-            caption: "Tidak semua kenangan harus ramai untuk menjadi berarti."
-        },
-
-        {
-            image: "images/foto8.jpg",
-            number: "08",
-            title: "Still smiling",
-            caption: "Foto ini mungkin cuma satu frame, tapi rasanya lebih panjang dari itu."
-        },
-
-        {
-            image: "images/foto9.jpg",
-            number: "09",
-            title: "Almost there",
-            caption: "Semakin banyak cerita, semakin banyak hal yang bisa dikenang."
-        },
-
-        {
-            image: "images/foto10.jpg",
-            number: "10",
-            title: "For later",
-            caption: "Satu frame lagi untuk disimpan sebelum kita lanjut ke cerita berikutnya."
-        }
-
-    ]
-
-};
-
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const pages = document.querySelectorAll(".page");
-
-const chapterIndicator =
-    document.getElementById("chapterIndicator");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-const partnerElements =
-    document.querySelectorAll("[data-partner-name]");
-
-const galleryGrid =
-    document.getElementById("galleryGrid");
-
-const musicButton =
-    document.getElementById("musicButton");
-
-const musicLabel =
-    document.getElementById("musicLabel");
-
-const backgroundMusic =
-    document.getElementById("backgroundMusic");
-
-const enterButton =
-    document.getElementById("enterButton");
-
-const restartButton =
-    document.getElementById("restartButton");
-
-const memoryVideo =
-    document.getElementById("memoryVideo");
-
-const videoStatus =
-    document.getElementById("videoStatus");
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let currentPage = "page1";
-
-let musicWanted = false;
-
-let currentMusicVolume = 0.45;
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-function init() {
-
-    applyConfiguration();
-
-    renderGallery();
-
-    setupNavigation();
-
-    setupMusic();
-
-    setupVideo();
-
-    createParticles();
-
-    setupRevealAnimation();
-
-    setupPageScroll();
-
-    updateInterface("page1");
-
+    --serif: "DM Serif Display", Georgia, serif;
+    --sans: "DM Sans", Arial, sans-serif;
+    --manrope: "Manrope", Arial, sans-serif;
 }
 
 
 /* =========================================================
-   CONFIGURATION
+   RESET
 ========================================================= */
 
-function applyConfiguration() {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    partnerElements.forEach(element => {
+html {
+    scroll-behavior: smooth;
+}
 
-        element.textContent =
-            CONFIG.partnerName;
-
-    });
-
-
-    backgroundMusic.src =
-        CONFIG.music;
-
-    backgroundMusic.volume =
-        currentMusicVolume;
-
+body {
+    background: var(--black);
+    color: white;
+    font-family: var(--sans);
+    overflow: hidden;
 }
 
 
 /* =========================================================
-   GALLERY
+   BACKGROUND
 ========================================================= */
 
-function renderGallery() {
+.noise {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.045;
 
-    galleryGrid.innerHTML = "";
-
-
-    CONFIG.memories.forEach((memory, index) => {
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            `gallery-item gallery-item-${index + 1} reveal`;
-
-
-        card.innerHTML = `
-
-            <div class="gallery-image">
-
-                <img
-                    src="${memory.image}"
-                    alt="${escapeHTML(memory.title)}"
-                    loading="lazy"
-                >
-
-                <div class="image-overlay"></div>
-
-                <div class="image-number">
-                    ${memory.number}
-                </div>
-
-            </div>
-
-
-            <div class="gallery-info">
-
-                <div class="gallery-title">
-                    ${escapeHTML(memory.title)}
-                </div>
-
-                <div class="gallery-caption">
-                    ${escapeHTML(memory.caption)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        galleryGrid.appendChild(card);
-
-    });
-
-
-    setupRevealAnimation();
-
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
+.aurora {
+    position: fixed;
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: 0;
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function setupNavigation() {
-
-    enterButton.addEventListener(
-        "click",
-        () => {
-
-            goToPage("page2");
-
-            attemptMusicStart();
-
-        }
-    );
-
-
-    document
-        .querySelectorAll("[data-next]")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const target =
-                        button.dataset.next;
-
-                    goToPage(target);
-
-                }
-            );
-
-        });
-
-
-    restartButton.addEventListener(
-        "click",
-        () => {
-
-            goToPage("page1");
-
-        }
-    );
-
+    animation: auroraMove 14s ease-in-out infinite alternate;
 }
 
+.aurora-one {
+    background: #d889a0;
+    top: -30vw;
+    right: -10vw;
+}
 
-/* =========================================================
-   PAGE TRANSITION
-========================================================= */
+.aurora-two {
+    background: #7564a9;
+    bottom: -35vw;
+    left: -20vw;
+    animation-delay: -5s;
+}
 
-function goToPage(targetId) {
-
-    if (targetId === currentPage) {
-        return;
+@keyframes auroraMove {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
     }
 
-
-    const oldPage =
-        document.getElementById(currentPage);
-
-    const newPage =
-        document.getElementById(targetId);
-
-
-    if (!newPage) {
-        return;
+    to {
+        transform: translate3d(5vw, 4vw, 0) scale(1.15);
     }
-
-
-    oldPage.classList.remove("active");
-
-    oldPage.classList.add("leaving");
-
-
-    setTimeout(() => {
-
-        oldPage.classList.remove("leaving");
-
-    }, 900);
-
-
-    newPage.classList.add("active");
-
-
-    currentPage =
-        targetId;
-
-
-    updateInterface(targetId);
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-
-    if (targetId !== "page4") {
-
-        if (!memoryVideo.paused) {
-
-            memoryVideo.pause();
-
-        }
-
-    }
-
-
-    revealPage(newPage);
-
-}
-
-
-/* =========================================================
-   INTERFACE
-========================================================= */
-
-function updateInterface(pageId) {
-
-    const number =
-        Number(
-            pageId.replace("page", "")
-        );
-
-
-    chapterIndicator.textContent =
-        `${String(number).padStart(2, "0")} / 05`;
-
-
-    const percentage =
-        ((number - 1) / 4) * 100;
-
-
-    progressBar.style.width =
-        `${percentage}%`;
-
-}
-
-
-/* =========================================================
-   MUSIC
-========================================================= */
-
-function setupMusic() {
-
-    musicButton.addEventListener(
-        "click",
-        toggleMusic
-    );
-
-}
-
-
-async function toggleMusic() {
-
-    if (backgroundMusic.paused) {
-
-        await playMusic();
-
-    } else {
-
-        pauseMusic();
-
-    }
-
-}
-
-
-async function playMusic() {
-
-    try {
-
-        await backgroundMusic.play();
-
-        musicWanted = true;
-
-        setMusicUI(true);
-
-    } catch (error) {
-
-        console.log(
-            "Music membutuhkan interaksi pengguna."
-        );
-
-    }
-
-}
-
-
-function pauseMusic() {
-
-    backgroundMusic.pause();
-
-    musicWanted = false;
-
-    setMusicUI(false);
-
-}
-
-
-function setMusicUI(isPlaying) {
-
-    if (isPlaying) {
-
-        musicLabel.textContent =
-            "MUSIC ON";
-
-        musicButton.classList.add(
-            "playing"
-        );
-
-    } else {
-
-        musicLabel.textContent =
-            "MUSIC OFF";
-
-        musicButton.classList.remove(
-            "playing"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   AUTO START MUSIC
-========================================================= */
-
-function attemptMusicStart() {
-
-    if (!musicWanted) {
-
-        playMusic();
-
-    }
-
-}
-
-
-/* =========================================================
-   VIDEO
-========================================================= */
-
-function setupVideo() {
-
-    if (!memoryVideo) {
-        return;
-    }
-
-
-    memoryVideo.addEventListener(
-        "play",
-        () => {
-
-            /*
-                Kalau musik sedang menyala,
-                simpan status bahwa user memang
-                ingin musik tetap menyala.
-            */
-
-            if (!backgroundMusic.paused) {
-
-                musicWanted = true;
-
-                backgroundMusic.pause();
-
-                setMusicUI(false);
-
-            }
-
-
-            videoStatus.textContent =
-                "PLAYING";
-
-            videoStatus.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-
-    memoryVideo.addEventListener(
-        "pause",
-        () => {
-
-            videoStatus.textContent =
-                "PAUSED";
-
-            videoStatus.classList.remove(
-                "active"
-            );
-
-
-            /*
-                Kalau sebelumnya musik memang
-                sedang dipakai, musik dilanjutkan.
-            */
-
-            if (
-                musicWanted &&
-                currentPage === "page4"
-            ) {
-
-                playMusic();
-
-            }
-
-        }
-    );
-
-
-    memoryVideo.addEventListener(
-        "ended",
-        () => {
-
-            videoStatus.textContent =
-                "FINISHED";
-
-            videoStatus.classList.remove(
-                "active"
-            );
-
-
-            if (
-                musicWanted &&
-                currentPage === "page4"
-            ) {
-
-                playMusic();
-
-            }
-
-        }
-    );
-
-
-    memoryVideo.addEventListener(
-        "error",
-        () => {
-
-            videoStatus.textContent =
-                "ADD VIDEO";
-
-            videoStatus.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   REVEAL ANIMATION
-========================================================= */
-
-function setupRevealAnimation() {
-
-    const elements =
-        document.querySelectorAll(
-            ".reveal"
-        );
-
-
-    const observer =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    elements.forEach(element => {
-
-        observer.observe(element);
-
-    });
-
-}
-
-
-function revealPage(page) {
-
-    const elements =
-        page.querySelectorAll(
-            ".reveal"
-        );
-
-
-    elements.forEach(
-        (element, index) => {
-
-            setTimeout(() => {
-
-                element.classList.add(
-                    "visible"
-                );
-
-            }, 100 + index * 70);
-
-        }
-    );
-
 }
 
 
@@ -681,132 +97,1359 @@ function revealPage(page) {
    PARTICLES
 ========================================================= */
 
-function createParticles() {
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
 
-    const container =
-        document.getElementById(
-            "particles"
-        );
+.particle {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
 
+    animation: particleFloat linear infinite;
+}
 
-    const amount =
-        window.innerWidth < 700
-            ? 25
-            : 55;
-
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-        const particle =
-            document.createElement("span");
-
-
-        particle.className =
-            "particle";
-
-
-        const size =
-            Math.random() * 3 + 1;
-
-
-        particle.style.width =
-            `${size}px`;
-
-        particle.style.height =
-            `${size}px`;
-
-
-        particle.style.left =
-            `${Math.random() * 100}%`;
-
-
-        particle.style.top =
-            `${Math.random() * 100}%`;
-
-
-        particle.style.animationDelay =
-            `${Math.random() * 8}s`;
-
-
-        particle.style.animationDuration =
-            `${5 + Math.random() * 8}s`;
-
-
-        container.appendChild(
-            particle
-        );
-
+@keyframes particleFloat {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
     }
 
+    15% {
+        opacity: 0.7;
+    }
+
+    85% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
 }
 
 
 /* =========================================================
-   PAGE SCROLL EFFECT
+   TOPBAR
 ========================================================= */
 
-function setupPageScroll() {
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    padding: 0 5vw;
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-            page.addEventListener(
-                "scroll",
-                () => {
+    z-index: 500;
+    pointer-events: none;
+}
 
-                    const scroll =
-                        page.scrollTop;
+.brand {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    font-weight: 700;
 
-                    const height =
-                        page.scrollHeight -
-                        page.clientHeight;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
+    pointer-events: auto;
+}
 
-                    const percentage =
-                        height > 0
-                            ? scroll / height
-                            : 0;
+.brand-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 16px var(--pink);
+}
 
+.chapter {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
-                    page.style.setProperty(
-                        "--scroll",
-                        percentage
-                    );
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    opacity: 0.45;
+}
 
-                }
-            );
+.music-button {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
 
-        });
+    padding: 9px 13px;
+    border-radius: 100px;
 
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 9px;
+    letter-spacing: 0.15em;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition: 0.3s ease;
+    backdrop-filter: blur(20px);
+}
+
+.music-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.music-button.playing {
+    border-color: rgba(232, 167, 183, 0.5);
+}
+
+.music-icon {
+    height: 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.music-icon i {
+    display: block;
+    width: 2px;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--pink);
+}
+
+.music-button.playing .music-icon i:nth-child(1) {
+    animation: sound 1s infinite;
+}
+
+.music-button.playing .music-icon i:nth-child(2) {
+    animation: sound 0.7s infinite 0.1s;
+}
+
+.music-button.playing .music-icon i:nth-child(3) {
+    animation: sound 0.9s infinite 0.2s;
+}
+
+.music-button.playing .music-icon i:nth-child(4) {
+    animation: sound 0.6s infinite 0.15s;
+}
+
+@keyframes sound {
+    0%,
+    100% {
+        height: 4px;
+    }
+
+    50% {
+        height: 13px;
+    }
 }
 
 
 /* =========================================================
-   HTML ESCAPE
+   PAGE SYSTEM
 ========================================================= */
 
-function escapeHTML(value) {
+.page {
+    position: fixed;
+    inset: 0;
 
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+    width: 100vw;
+    height: 100vh;
 
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(30px) scale(0.985);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.8s;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.page.leaving {
+    opacity: 0;
+    transform: translateY(-30px) scale(1.02);
+}
+
+.page::-webkit-scrollbar {
+    width: 4px;
+}
+
+.page::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
 }
 
 
 /* =========================================================
-   START
+   HERO
 ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    init
-);
+.page-hero {
+    background:
+        radial-gradient(
+            circle at 75% 35%,
+            rgba(220, 130, 155, 0.14),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 20% 90%,
+            rgba(120, 100, 170, 0.12),
+            transparent 30%
+        ),
+        #09080c;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero-grid {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.18;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+        );
+
+    background-size: 90px 90px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 80%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 4;
+
+    width: min(680px, 70vw);
+    margin-left: 11vw;
+    padding-top: 30px;
+}
+
+.eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    font-weight: 700;
+
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 25px;
+}
+
+.eyebrow.dark {
+    color: #756e65;
+}
+
+.eyebrow span {
+    color: var(--pink);
+}
+
+.hero-title {
+    font-family: var(--serif);
+    font-size: clamp(58px, 7.5vw, 110px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.045em;
+}
+
+.hero-title em {
+    color: var(--pink);
+    font-weight: 400;
+}
+
+.hero-description {
+    width: 480px;
+    max-width: 100%;
+    margin-top: 32px;
+
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+.enter-button {
+    margin-top: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+
+    padding: 14px 20px 14px 14px;
+    border-radius: 100px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+
+    transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(20px);
+}
+
+.enter-button:hover {
+    transform: translateY(-4px);
+    border-color: var(--pink);
+
+    box-shadow:
+        0 20px 50px
+        rgba(220, 130, 155, 0.15);
+}
+
+.enter-arrow {
+    width: 35px;
+    height: 35px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+    background: var(--pink);
+    color: #21131a;
+
+    font-size: 18px;
+}
+
+.archive-card {
+    position: absolute;
+    right: 12vw;
+    top: 50%;
+
+    transform: translateY(-50%) rotate(7deg);
+
+    width: 280px;
+    height: 390px;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.11),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 50px 100px
+        rgba(0, 0, 0, 0.5);
+
+    padding: 22px;
+    z-index: 3;
+    overflow: hidden;
+
+    transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-card:hover {
+    transform:
+        translateY(calc(-50% - 10px))
+        rotate(2deg);
+}
+
+.archive-shine {
+    position: absolute;
+
+    width: 200px;
+    height: 500px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.13),
+            transparent
+        );
+
+    transform: rotate(25deg) translateX(-300px);
+    animation: shine 7s infinite;
+}
+
+@keyframes shine {
+    50%,
+    100% {
+        transform: rotate(25deg) translateX(400px);
+    }
+}
+
+.archive-top,
+.archive-bottom {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 7px;
+    letter-spacing: 0.18em;
+    opacity: 0.45;
+}
+
+.archive-symbol {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-family: var(--serif);
+    font-size: 110px;
+    color: var(--pink);
+
+    text-shadow:
+        0 0 60px
+        rgba(232, 167, 183, 0.3);
+}
+
+.archive-bottom {
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
+    right: 22px;
+}
+
+.scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    opacity: 0.35;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scroll-hint span {
+    width: 1px;
+    height: 25px;
+
+    background: rgba(255, 255, 255, 0.5);
+    animation: scrollLine 2s infinite;
+}
+
+@keyframes scrollLine {
+    0%,
+    100% {
+        transform: scaleY(0.4);
+        transform-origin: top;
+    }
+
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+
+/* =========================================================
+   ORBITS
+========================================================= */
+
+.orbit {
+    position: absolute;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.orbit-one {
+    width: 600px;
+    height: 600px;
+    right: 2vw;
+    top: 10vh;
+    transform: rotate(25deg);
+}
+
+.orbit-two {
+    width: 430px;
+    height: 430px;
+    right: 12vw;
+    top: 20vh;
+    transform: rotate(-35deg);
+}
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+.section-container {
+    width: min(1180px, 88vw);
+    margin: 0 auto;
+    padding: 140px 0 100px;
+}
+
+.page-number {
+    position: absolute;
+    right: 5vw;
+    top: 120px;
+
+    font-size: 100px;
+    font-family: var(--serif);
+    opacity: 0.04;
+}
+
+.section-heading h2,
+.gallery-heading h2,
+.video-heading h2 {
+    font-family: var(--serif);
+    font-size: clamp(55px, 7vw, 100px);
+    line-height: 0.9;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.section-heading h2 em,
+.gallery-heading h2 em,
+.video-heading h2 em {
+    font-style: italic;
+}
+
+.section-heading p,
+.gallery-heading p,
+.video-heading p {
+    margin-top: 25px;
+    max-width: 450px;
+
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   LETTER PAGE
+========================================================= */
+
+.page-letter {
+    background: #e8e1d5;
+    color: #1b1816;
+}
+
+.letter-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-card {
+    position: relative;
+
+    margin: 90px auto 55px;
+    width: min(820px, 100%);
+    padding: 75px 90px;
+
+    background: #f5f0e8;
+
+    box-shadow:
+        0 50px 100px
+        rgba(52, 42, 34, 0.16);
+
+    transform: rotate(-0.5deg);
+}
+
+.letter-card::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+
+    border: 1px solid rgba(50, 40, 30, 0.08);
+    pointer-events: none;
+}
+
+.letter-decoration {
+    position: absolute;
+    right: 55px;
+    top: 45px;
+
+    width: 70px;
+    height: 70px;
+
+    border: 1px solid rgba(30, 25, 20, 0.18);
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 8px;
+    letter-spacing: 0.15em;
+
+    transform: rotate(12deg);
+}
+
+.letter-decoration strong {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.letter-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 35px;
+    border-bottom: 1px solid rgba(30, 25, 20, 0.1);
+
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: #756e65;
+}
+
+.letter-header b {
+    color: #201b18;
+}
+
+.letter-content {
+    padding-top: 45px;
+}
+
+.letter-content p {
+    font-family: var(--serif);
+    font-size: 20px;
+    line-height: 1.75;
+
+    margin-bottom: 28px;
+    color: #312b27;
+}
+
+.letter-signature {
+    margin-top: 45px;
+
+    font-family: "Parisienne", cursive;
+    font-size: 22px;
+    color: #675c54;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.letter-signature strong {
+    font-size: 27px;
+    font-weight: 400;
+    color: #332b27;
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.next-button {
+    align-self: center;
+
+    border: 0;
+    background: transparent;
+    color: #3c342e;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+
+    transition: 0.3s;
+}
+
+.next-button small {
+    font-size: 8px;
+    opacity: 0.4;
+}
+
+.next-button:hover {
+    transform: translateY(-5px);
+}
+
+.dark-button,
+.video-next {
+    color: white;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.page-gallery {
+    background: #0d0c10;
+}
+
+.gallery-heading {
+    margin-bottom: 90px;
+}
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns: repeat(12, 1fr);
+    gap: 22px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item-1 {
+    grid-column: span 5;
+}
+
+.gallery-item-2 {
+    grid-column: span 7;
+    margin-top: 100px;
+}
+
+.gallery-item-3 {
+    grid-column: span 4;
+}
+
+.gallery-item-4 {
+    grid-column: span 8;
+}
+
+.gallery-item-5 {
+    grid-column: span 7;
+}
+
+.gallery-item-6 {
+    grid-column: span 5;
+    margin-top: 80px;
+}
+
+.gallery-item-7 {
+    grid-column: span 5;
+}
+
+.gallery-item-8 {
+    grid-column: span 7;
+    margin-top: 100px;
+}
+
+.gallery-item-9 {
+    grid-column: span 8;
+}
+
+.gallery-item-10 {
+    grid-column: span 4;
+    margin-top: 100px;
+}
+
+.gallery-image {
+    position: relative;
+    overflow: hidden;
+
+    background: #17151b;
+    aspect-ratio: 4 / 5;
+}
+
+.gallery-item-2 .gallery-image,
+.gallery-item-4 .gallery-image,
+.gallery-item-5 .gallery-image,
+.gallery-item-8 .gallery-image,
+.gallery-item-9 .gallery-image {
+    aspect-ratio: 16 / 10;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+
+    transition:
+        transform
+        1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.07);
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.65),
+            transparent 55%
+        );
+}
+
+.image-number {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+
+    font-size: 8px;
+    letter-spacing: 0.2em;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    background: rgba(0, 0, 0, 0.2);
+
+    backdrop-filter: blur(10px);
+}
+
+.gallery-info {
+    padding: 15px 3px 35px;
+}
+
+.gallery-title {
+    font-family: var(--serif);
+    font-size: 22px;
+}
+
+.gallery-caption {
+    margin-top: 5px;
+
+    font-size: 11px;
+    line-height: 1.6;
+    color: #858089;
+}
+
+
+/* =========================================================
+   VIDEO PAGE
+========================================================= */
+
+.page-video {
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(232, 167, 183, 0.09),
+            transparent 40%
+        ),
+        #0b0a0e;
+}
+
+.video-container {
+    width: min(1200px, 88vw);
+    margin: 0 auto;
+    padding: 140px 0 100px;
+}
+
+.video-heading {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+    align-items: end;
+    margin-bottom: 65px;
+}
+
+.video-heading p {
+    margin: 0 0 10px auto;
+}
+
+.video-frame {
+    width: 100%;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    padding: 12px;
+
+    box-shadow:
+        0 60px 120px
+        rgba(0, 0, 0, 0.5);
+}
+
+.video-header,
+.video-footer {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 12px;
+
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    color: #77727b;
+}
+
+.video-header span:last-child {
+    color: var(--pink);
+}
+
+.video-header span:last-child.active {
+    text-shadow: 0 0 15px var(--pink);
+}
+
+.video-wrapper {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    overflow: hidden;
+    background: #050505;
+}
+
+.video-wrapper video {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.video-placeholder {
+    position: absolute;
+    inset: 0;
+
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #111015;
+    color: white;
+}
+
+.video-placeholder strong {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.video-placeholder small {
+    margin-top: 8px;
+    color: #77727b;
+}
+
+.play-placeholder {
+    width: 65px;
+    height: 65px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--pink);
+}
+
+.video-footer {
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.page-final {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(175, 108, 140, 0.14),
+            transparent 35%
+        ),
+        #08070a;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.7) 1px,
+            transparent 1px
+        );
+
+    background-size: 80px 80px;
+
+    opacity: 0.2;
+
+    mask-image:
+        radial-gradient(
+            circle,
+            black,
+            transparent 75%
+        );
+}
+
+.final-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(800px, 88vw);
+}
+
+.final-title {
+    font-family: var(--serif);
+
+    font-size: clamp(65px, 8vw, 115px);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+}
+
+.final-title em {
+    color: var(--pink);
+}
+
+.final-text {
+    width: 500px;
+    max-width: 100%;
+    margin: 45px auto;
+}
+
+.final-text p {
+    font-size: 13px;
+    line-height: 1.8;
+
+    color: #8f8992;
+    margin-bottom: 15px;
+}
+
+.final-symbol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 50px;
+}
+
+.final-symbol > span {
+    font-family: var(--serif);
+    font-size: 55px;
+    color: var(--pink);
+
+    text-shadow:
+        0 0 40px
+        rgba(232, 167, 183, 0.3);
+}
+
+.final-symbol div {
+    margin-top: 5px;
+
+    font-size: 9px;
+    letter-spacing: 0.25em;
+}
+
+.final-symbol strong {
+    color: var(--pink);
+}
+
+.final-symbol small {
+    margin-top: 10px;
+
+    font-size: 7px;
+    letter-spacing: 0.25em;
+    opacity: 0.35;
+}
+
+.restart-button {
+    margin-top: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+
+    padding: 13px 18px;
+    border-radius: 100px;
+
+    cursor: pointer;
+
+    font-size: 9px;
+    letter-spacing: 0.16em;
+
+    transition: 0.3s;
+}
+
+.restart-button:hover {
+    border-color: var(--pink);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
+    position: fixed;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    z-index: 600;
+}
+
+.progress span {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--pink);
+
+    box-shadow: 0 0 15px var(--pink);
+
+    transition: width 0.7s ease;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+    .topbar {
+        height: 65px;
+        padding: 0 5vw;
+    }
+
+    .brand {
+        font-size: 8px;
+    }
+
+    .chapter {
+        display: none;
+    }
+
+    .music-button {
+        padding: 8px 10px;
+    }
+
+    .music-button #musicLabel {
+        display: none;
+    }
+
+    .hero-content {
+        width: 88vw;
+        margin: 0 auto;
+        padding: 80px 0 50px;
+    }
+
+    .hero-title {
+        font-size: clamp(50px, 15vw, 78px);
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .archive-card {
+        display: none;
+    }
+
+    .orbit-one {
+        width: 450px;
+        height: 450px;
+        right: -220px;
+    }
+
+    .orbit-two {
+        width: 320px;
+        height: 320px;
+        right: -100px;
+    }
+
+    .section-container,
+    .video-container {
+        width: 88vw;
+        padding: 110px 0 80px;
+    }
+
+    .section-heading h2,
+    .gallery-heading h2,
+    .video-heading h2 {
+        font-size: 58px;
+    }
+
+    .letter-card {
+        padding: 55px 30px;
+        margin-top: 60px;
+    }
+
+    .letter-decoration {
+        right: 25px;
+        top: 25px;
+
+        width: 55px;
+        height: 55px;
+    }
+
+    .letter-content p {
+        font-size: 17px;
+    }
+
+    .gallery-heading {
+        margin-bottom: 60px;
+    }
+
+    .gallery-grid {
+        display: block;
+    }
+
+    .gallery-item {
+        margin: 0 0 35px !important;
+    }
+
+    .gallery-image,
+    .gallery-item-2 .gallery-image,
+    .gallery-item-4 .gallery-image,
+    .gallery-item-5 .gallery-image,
+    .gallery-item-8 .gallery-image,
+    .gallery-item-9 .gallery-image {
+        aspect-ratio: 4 / 5;
+    }
+
+    .video-heading {
+        display: block;
+    }
+
+    .video-heading p {
+        margin-top: 25px;
+    }
+
+    .video-frame {
+        padding: 6px;
+    }
+
+    .video-header,
+    .video-footer {
+        height: 35px;
+    }
+
+    .final-title {
+        font-size: clamp(58px, 15vw, 82px);
+    }
+
+    .final-text {
+        margin: 35px auto;
+    }
+
+    .scroll-hint {
+        bottom: 18px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+### Yang gue perbaiki
+
+* `border: 0` yang langsung ditimpa `border: 1px...` di `.music-button` gue hapus.
+* Selector seperti:
+
+  ```css
+  .music-button.playing
+  .music-icon i
+  ```
+
+  gue rapikan menjadi:
+
+  ```css
+  .music-button.playing .music-icon i
+  ```
+
+  Hasilnya **sama**, cuma lebih jelas.
+* `.archive-card:hover` gue rapikan agar tetap naik **10px** dan rotasinya berubah, tanpa dua `translateY()` terpisah.
+* `@keyframes shine` yang punya deklarasi `translateX(400px)` dua kali gue gabungkan.
+* Semua indentation dan spacing gue konsistenkan.
+* Warna, ukuran, breakpoint `850px`, animasi, layout gallery, hero, letter, video, final page, dan page system **tetap dipertahankan**.
+* Tidak gue tambahin framework atau dependency apa pun.
+
+**Catatan penting:** `.page { visibility: hidden; }` dan `body { overflow: hidden; }` **sengaja gue pertahankan**, karena dari struktur CSS lu kelihatannya sistem perpindahan halaman memang dikontrol JavaScript. Jadi jangan gue ubah sembarangan karena bisa bikin navigasi project lu rusak.
