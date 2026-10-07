@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="A little digital archive of our story."
+    >
+
+    <title>Our Little Archive</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700&family=Parisienne&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         BACKGROUND EFFECTS
+    ====================================================== -->
+
+    <div class="noise"></div>
+
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+
+    <div id="particles"></div>
+
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            <span class="brand-dot"></span>
+            OUR LITTLE ARCHIVE
+        </div>
+
+        <div class="chapter" id="chapterIndicator">
+            01 / 05
+        </div>
+
+        <button
+            class="music-button"
+            id="musicButton"
+            aria-label="Toggle music"
+        >
+
+            <span class="music-icon">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+
+            <span id="musicLabel">
+                MUSIC OFF
+            </span>
+
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main id="app">
+
+
+        <!-- =================================================
+             PAGE 1
+        ================================================== -->
+
+        <section
+            class="page page-hero active"
+            id="page1"
+        >
+
+            <div class="hero-grid"></div>
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="hero-content">
+
+                <div class="eyebrow reveal">
+                    A DIGITAL LETTER · MADE FOR
+                    <span data-partner-name>YOU</span>
+                </div>
+
+                <h1 class="hero-title reveal">
+                    Some stories
+                    <br>
+                    deserve to be
+                    <em>kept.</em>
+                </h1>
+
+                <p class="hero-description reveal">
+                    Bukan sekadar website.
+                    Ini adalah ruang kecil untuk menyimpan
+                    percakapan, tawa, perjalanan, foto,
+                    dan hal-hal sederhana yang pernah terasa berarti.
+                </p>
+
+                <button
+                    class="enter-button reveal"
+                    id="enterButton"
+                >
+
+                    <span class="enter-arrow">
+                        ↘
+                    </span>
+
+                    <span>
+                        Open our story
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- Floating archive card -->
+
+            <div class="archive-card reveal">
+
+                <div class="archive-shine"></div>
+
+                <div class="archive-top">
+
+                    <span>
+                        ARCHIVE / 001
+                    </span>
+
+                    <span>
+                        FOR
+                        <span data-partner-name>
+                            YOU
+                        </span>
+                    </span>
+
+                </div>
+
+                <div class="archive-symbol">
+                    ♡
+                </div>
+
+                <div class="archive-bottom">
+
+                    <span>
+                        small moments
+                    </span>
+
+                    <span>
+                        big meaning
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="scroll-hint">
+                <span></span>
+                SCROLL TO BEGIN
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 2 — LETTER
+        ================================================== -->
+
+        <section
+            class="page page-letter"
+            id="page2"
+        >
+
+            <div class="page-number">
+                02
+            </div>
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+
+                    <div class="eyebrow dark">
+                        CHAPTER ONE
+                    </div>
+
+                    <h2>
+                        A letter,
+                        <br>
+                        <em>without a deadline.</em>
+                    </h2>
+
+                    <p>
+                        Beberapa hal memang lebih enak
+                        ditulis pelan-pelan.
+                    </p>
+
+                </div>
+
+
+                <article class="letter-card reveal">
+
+                    <div class="letter-decoration">
+                        <span>FOR</span>
+                        <strong>YOU</strong>
+                    </div>
+
+                    <div class="letter-header">
+
+                        <span>
+                            DEAR
+                            <b data-partner-name>
+                                SOMEONE SPECIAL
+                            </b>
+                        </span>
+
+                        <span>
+                            ∞
+                        </span>
+
+                    </div>
+
+
+                    <div class="letter-content">
+
+                        <p>
+                            Aku tidak tahu tepatnya kapan
+                            hal-hal kecil mulai terasa berbeda.
+                            Mungkin dari percakapan yang awalnya
+                            biasa saja, dari tawa yang datang
+                            tanpa direncanakan, atau dari
+                            kebiasaan sederhana yang akhirnya
+                            jadi sesuatu yang aku tunggu.
+                        </p>
+
+                        <p>
+                            Yang aku tahu, sejak ada kamu,
+                            beberapa hari terasa punya warna
+                            sendiri. Bukan karena semuanya
+                            selalu sempurna, tapi karena ada
+                            seseorang yang membuat hari biasa
+                            pun layak diingat.
+                        </p>
+
+                        <p>
+                            Terima kasih untuk waktu yang kita
+                            bagi, untuk cerita yang kita simpan,
+                            dan untuk semua momen kecil yang
+                            mungkin terlihat sepele bagi orang
+                            lain, tapi punya tempatnya sendiri
+                            di kepalaku.
+                        </p>
+
+                        <p>
+                            Aku tidak ingin buru-buru menebak
+                            bagaimana akhir cerita ini.
+                            Aku cuma ingin menikmati halaman
+                            yang sedang kita tulis sekarang,
+                            satu demi satu.
+                        </p>
+
+                    </div>
+
+
+                    <div class="letter-signature">
+
+                        with all my heart,
+
+                        <strong>
+                            your favorite person ♡
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <button
+                    class="next-button reveal"
+                    data-next="page3"
+                >
+
+                    <span>
+                        NEXT CHAPTER
+                    </span>
+
+                    <small>
+                        02 → 03
+                    </small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 3 — GALLERY
+        ================================================== -->
+
+        <section
+            class="page page-gallery"
+            id="page3"
+        >
+
+            <div class="page-number">
+                03
+            </div>
+
+            <div class="section-container">
+
+                <div class="gallery-heading reveal">
+
+                    <div class="eyebrow">
+                        CHAPTER TWO · THE GALLERY
+                    </div>
+
+                    <h2>
+                        Ten little
+                        <br>
+                        <em>pieces of us.</em>
+                    </h2>
+
+                    <p>
+                        Foto boleh berhenti di satu frame.
+                        Ceritanya tidak.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="gallery-grid"
+                    id="galleryGrid"
+                >
+                </div>
+
+
+                <button
+                    class="next-button dark-button reveal"
+                    data-next="page4"
+                >
+
+                    <span>
+                        NEXT CHAPTER
+                    </span>
+
+                    <small>
+                        03 → 04
+                    </small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 4 — VIDEO
+        ================================================== -->
+
+        <section
+            class="page page-video"
+            id="page4"
+        >
+
+            <div class="page-number">
+                04
+            </div>
+
+            <div class="video-container">
+
+                <div class="video-heading reveal">
+
+                    <div class="eyebrow">
+                        CHAPTER THREE · MOVING MEMORY
+                    </div>
+
+                    <h2>
+                        Some memories
+                        <br>
+                        need to <em>move.</em>
+                    </h2>
+
+                    <p>
+                        Putar videonya.
+                        Saat video mulai diputar,
+                        musik halaman otomatis berhenti
+                        supaya suara video terdengar jelas.
+                    </p>
+
+                </div>
+
+
+                <div class="video-frame reveal">
+
+                    <div class="video-header">
+
+                        <span>
+                            MEMORY_FILM.MP4
+                        </span>
+
+                        <span id="videoStatus">
+                            READY
+                        </span>
+
+                    </div>
+
+
+                    <div class="video-wrapper">
+
+                        <video
+                            id="memoryVideo"
+                            controls
+                            playsinline
+                            preload="metadata"
+                            poster="images/video-poster.jpg"
+                        >
+
+                            <source
+                                src="video/memory.mp4"
+                                type="video/mp4"
+                            >
+
+                            Browser kamu tidak mendukung video.
+
+                        </video>
+
+
+                        <div class="video-placeholder">
+
+                            <div class="play-placeholder">
+                                ▶
+                            </div>
+
+                            <strong>
+                                Masukkan video landscape
+                            </strong>
+
+                            <small>
+                                video/memory.mp4
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="video-footer">
+
+                        <span>
+                            16 : 9 · LANDSCAPE
+                        </span>
+
+                        <span>
+                            PLAYBACK MEMORY
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="next-button video-next reveal"
+                    data-next="page5"
+                >
+
+                    <span>
+                        ONE LAST CHAPTER
+                    </span>
+
+                    <small>
+                        04 → 05
+                    </small>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             PAGE 5 — END
+        ================================================== -->
+
+        <section
+            class="page page-final"
+            id="page5"
+        >
+
+            <div class="final-glow"></div>
+
+            <div class="stars"></div>
+
+            <div class="final-content">
+
+                <div class="eyebrow reveal">
+                    CHAPTER FOUR · NOT REALLY THE END
+                </div>
+
+                <h2 class="final-title reveal">
+
+                    And somehow,
+                    <br>
+                    <em>we're here.</em>
+
+                </h2>
+
+
+                <div class="final-text">
+
+                    <p class="reveal">
+                        Kalau website ini adalah sebuah buku,
+                        aku rasa satu halaman terakhir belum
+                        waktunya ditulis.
+                    </p>
+
+                    <p class="reveal">
+                        Masih ada hari-hari biasa yang belum
+                        kita jalani, tempat-tempat yang belum
+                        kita datangi, foto-foto yang belum
+                        kita ambil, dan cerita yang bahkan
+                        belum kita tahu akan terjadi.
+                    </p>
+
+                </div>
+
+
+                <div class="final-symbol reveal">
+
+                    <span>
+                        ♡
+                    </span>
+
+                    <div>
+                        FOR
+                        <strong data-partner-name>
+                            YOU
+                        </strong>
+                    </div>
+
+                    <small>
+                        KEEP THIS LITTLE PIECE OF US
+                    </small>
+
+                </div>
+
+
+                <button
+                    class="restart-button reveal"
+                    id="restartButton"
+                >
+
+                    ↺ READ IT AGAIN
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Progress -->
+
+    <div class="progress">
+        <span id="progressBar"></span>
+    </div>
+
+
+    <!-- Music -->
+
+    <audio
+        id="backgroundMusic"
+        loop
+        preload="auto"
+    ></audio>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,812 @@
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+const CONFIG = {
+
+    partnerName: "someone special",
+
+    music: "audio/lagu.mp3",
+
+    memories: [
+
+        {
+            image: "images/foto1.jpg",
+            number: "01",
+            title: "The beginning",
+            caption: "Satu momen kecil yang ternyata jadi awal dari banyak cerita."
+        },
+
+        {
+            image: "images/foto2.jpg",
+            number: "02",
+            title: "That day",
+            caption: "Hari biasa yang akhirnya punya tempat spesial."
+        },
+
+        {
+            image: "images/foto3.jpg",
+            number: "03",
+            title: "Little things",
+            caption: "Hal-hal kecil yang mungkin sederhana, tapi selalu berhasil bikin senyum."
+        },
+
+        {
+            image: "images/foto4.jpg",
+            number: "04",
+            title: "Another memory",
+            caption: "Satu frame, satu cerita, satu bagian kecil dari perjalanan kita."
+        },
+
+        {
+            image: "images/foto5.jpg",
+            number: "05",
+            title: "Good days",
+            caption: "Beberapa hari memang terasa lebih ringan saat dijalani bersama."
+        },
+
+        {
+            image: "images/foto6.jpg",
+            number: "06",
+            title: "Somewhere between",
+            caption: "Di antara banyak hal yang terjadi, momen ini tetap berhasil tersimpan."
+        },
+
+        {
+            image: "images/foto7.jpg",
+            number: "07",
+            title: "A quiet moment",
+            caption: "Tidak semua kenangan harus ramai untuk menjadi berarti."
+        },
+
+        {
+            image: "images/foto8.jpg",
+            number: "08",
+            title: "Still smiling",
+            caption: "Foto ini mungkin cuma satu frame, tapi rasanya lebih panjang dari itu."
+        },
+
+        {
+            image: "images/foto9.jpg",
+            number: "09",
+            title: "Almost there",
+            caption: "Semakin banyak cerita, semakin banyak hal yang bisa dikenang."
+        },
+
+        {
+            image: "images/foto10.jpg",
+            number: "10",
+            title: "For later",
+            caption: "Satu frame lagi untuk disimpan sebelum kita lanjut ke cerita berikutnya."
+        }
+
+    ]
+
+};
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const pages = document.querySelectorAll(".page");
+
+const chapterIndicator =
+    document.getElementById("chapterIndicator");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const partnerElements =
+    document.querySelectorAll("[data-partner-name]");
+
+const galleryGrid =
+    document.getElementById("galleryGrid");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+const musicLabel =
+    document.getElementById("musicLabel");
+
+const backgroundMusic =
+    document.getElementById("backgroundMusic");
+
+const enterButton =
+    document.getElementById("enterButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+const memoryVideo =
+    document.getElementById("memoryVideo");
+
+const videoStatus =
+    document.getElementById("videoStatus");
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentPage = "page1";
+
+let musicWanted = false;
+
+let currentMusicVolume = 0.45;
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+function init() {
+
+    applyConfiguration();
+
+    renderGallery();
+
+    setupNavigation();
+
+    setupMusic();
+
+    setupVideo();
+
+    createParticles();
+
+    setupRevealAnimation();
+
+    setupPageScroll();
+
+    updateInterface("page1");
+
+}
+
+
+/* =========================================================
+   CONFIGURATION
+========================================================= */
+
+function applyConfiguration() {
+
+    partnerElements.forEach(element => {
+
+        element.textContent =
+            CONFIG.partnerName;
+
+    });
+
+
+    backgroundMusic.src =
+        CONFIG.music;
+
+    backgroundMusic.volume =
+        currentMusicVolume;
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function renderGallery() {
+
+    galleryGrid.innerHTML = "";
+
+
+    CONFIG.memories.forEach((memory, index) => {
+
+        const card =
+            document.createElement("article");
+
+        card.className =
+            `gallery-item gallery-item-${index + 1} reveal`;
+
+
+        card.innerHTML = `
+
+            <div class="gallery-image">
+
+                <img
+                    src="${memory.image}"
+                    alt="${escapeHTML(memory.title)}"
+                    loading="lazy"
+                >
+
+                <div class="image-overlay"></div>
+
+                <div class="image-number">
+                    ${memory.number}
+                </div>
+
+            </div>
+
+
+            <div class="gallery-info">
+
+                <div class="gallery-title">
+                    ${escapeHTML(memory.title)}
+                </div>
+
+                <div class="gallery-caption">
+                    ${escapeHTML(memory.caption)}
+                </div>
+
+            </div>
+
+        `;
+
+
+        galleryGrid.appendChild(card);
+
+    });
+
+
+    setupRevealAnimation();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function setupNavigation() {
+
+    enterButton.addEventListener(
+        "click",
+        () => {
+
+            goToPage("page2");
+
+            attemptMusicStart();
+
+        }
+    );
+
+
+    document
+        .querySelectorAll("[data-next]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const target =
+                        button.dataset.next;
+
+                    goToPage(target);
+
+                }
+            );
+
+        });
+
+
+    restartButton.addEventListener(
+        "click",
+        () => {
+
+            goToPage("page1");
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGE TRANSITION
+========================================================= */
+
+function goToPage(targetId) {
+
+    if (targetId === currentPage) {
+        return;
+    }
+
+
+    const oldPage =
+        document.getElementById(currentPage);
+
+    const newPage =
+        document.getElementById(targetId);
+
+
+    if (!newPage) {
+        return;
+    }
+
+
+    oldPage.classList.remove("active");
+
+    oldPage.classList.add("leaving");
+
+
+    setTimeout(() => {
+
+        oldPage.classList.remove("leaving");
+
+    }, 900);
+
+
+    newPage.classList.add("active");
+
+
+    currentPage =
+        targetId;
+
+
+    updateInterface(targetId);
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+
+
+    if (targetId !== "page4") {
+
+        if (!memoryVideo.paused) {
+
+            memoryVideo.pause();
+
+        }
+
+    }
+
+
+    revealPage(newPage);
+
+}
+
+
+/* =========================================================
+   INTERFACE
+========================================================= */
+
+function updateInterface(pageId) {
+
+    const number =
+        Number(
+            pageId.replace("page", "")
+        );
+
+
+    chapterIndicator.textContent =
+        `${String(number).padStart(2, "0")} / 05`;
+
+
+    const percentage =
+        ((number - 1) / 4) * 100;
+
+
+    progressBar.style.width =
+        `${percentage}%`;
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function setupMusic() {
+
+    musicButton.addEventListener(
+        "click",
+        toggleMusic
+    );
+
+}
+
+
+async function toggleMusic() {
+
+    if (backgroundMusic.paused) {
+
+        await playMusic();
+
+    } else {
+
+        pauseMusic();
+
+    }
+
+}
+
+
+async function playMusic() {
+
+    try {
+
+        await backgroundMusic.play();
+
+        musicWanted = true;
+
+        setMusicUI(true);
+
+    } catch (error) {
+
+        console.log(
+            "Music membutuhkan interaksi pengguna."
+        );
+
+    }
+
+}
+
+
+function pauseMusic() {
+
+    backgroundMusic.pause();
+
+    musicWanted = false;
+
+    setMusicUI(false);
+
+}
+
+
+function setMusicUI(isPlaying) {
+
+    if (isPlaying) {
+
+        musicLabel.textContent =
+            "MUSIC ON";
+
+        musicButton.classList.add(
+            "playing"
+        );
+
+    } else {
+
+        musicLabel.textContent =
+            "MUSIC OFF";
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   AUTO START MUSIC
+========================================================= */
+
+function attemptMusicStart() {
+
+    if (!musicWanted) {
+
+        playMusic();
+
+    }
+
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+function setupVideo() {
+
+    if (!memoryVideo) {
+        return;
+    }
+
+
+    memoryVideo.addEventListener(
+        "play",
+        () => {
+
+            /*
+                Kalau musik sedang menyala,
+                simpan status bahwa user memang
+                ingin musik tetap menyala.
+            */
+
+            if (!backgroundMusic.paused) {
+
+                musicWanted = true;
+
+                backgroundMusic.pause();
+
+                setMusicUI(false);
+
+            }
+
+
+            videoStatus.textContent =
+                "PLAYING";
+
+            videoStatus.classList.add(
+                "active"
+            );
+
+        }
+    );
+
+
+    memoryVideo.addEventListener(
+        "pause",
+        () => {
+
+            videoStatus.textContent =
+                "PAUSED";
+
+            videoStatus.classList.remove(
+                "active"
+            );
+
+
+            /*
+                Kalau sebelumnya musik memang
+                sedang dipakai, musik dilanjutkan.
+            */
+
+            if (
+                musicWanted &&
+                currentPage === "page4"
+            ) {
+
+                playMusic();
+
+            }
+
+        }
+    );
+
+
+    memoryVideo.addEventListener(
+        "ended",
+        () => {
+
+            videoStatus.textContent =
+                "FINISHED";
+
+            videoStatus.classList.remove(
+                "active"
+            );
+
+
+            if (
+                musicWanted &&
+                currentPage === "page4"
+            ) {
+
+                playMusic();
+
+            }
+
+        }
+    );
+
+
+    memoryVideo.addEventListener(
+        "error",
+        () => {
+
+            videoStatus.textContent =
+                "ADD VIDEO";
+
+            videoStatus.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+function setupRevealAnimation() {
+
+    const elements =
+        document.querySelectorAll(
+            ".reveal"
+        );
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    elements.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+function revealPage(page) {
+
+    const elements =
+        page.querySelectorAll(
+            ".reveal"
+        );
+
+
+    elements.forEach(
+        (element, index) => {
+
+            setTimeout(() => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }, 100 + index * 70);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function createParticles() {
+
+    const container =
+        document.getElementById(
+            "particles"
+        );
+
+
+    const amount =
+        window.innerWidth < 700
+            ? 25
+            : 55;
+
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
+
+        const particle =
+            document.createElement("span");
+
+
+        particle.className =
+            "particle";
+
+
+        const size =
+            Math.random() * 3 + 1;
+
+
+        particle.style.width =
+            `${size}px`;
+
+        particle.style.height =
+            `${size}px`;
+
+
+        particle.style.left =
+            `${Math.random() * 100}%`;
+
+
+        particle.style.top =
+            `${Math.random() * 100}%`;
+
+
+        particle.style.animationDelay =
+            `${Math.random() * 8}s`;
+
+
+        particle.style.animationDuration =
+            `${5 + Math.random() * 8}s`;
+
+
+        container.appendChild(
+            particle
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE SCROLL EFFECT
+========================================================= */
+
+function setupPageScroll() {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.addEventListener(
+                "scroll",
+                () => {
+
+                    const scroll =
+                        page.scrollTop;
+
+                    const height =
+                        page.scrollHeight -
+                        page.clientHeight;
+
+
+                    const percentage =
+                        height > 0
+                            ? scroll / height
+                            : 0;
+
+
+                    page.style.setProperty(
+                        "--scroll",
+                        percentage
+                    );
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
