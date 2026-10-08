@@ -1890,10 +1890,8 @@ body {
 
 }
 
-
 .gallery-item-11 {
-    grid-column:
-    span 5;
+    grid-column: span 5;
 }
 
 .gallery-item-12 {
@@ -1962,8 +1960,17 @@ body {
 .gallery-item-8
 .gallery-image,
 .gallery-item-9
+.gallery-image,
+.gallery-item-12
+.gallery-image,
+.gallery-item-14
+.gallery-image,
+.gallery-item-15
+.gallery-image,
+.gallery-item-18
+.gallery-image,
+.gallery-item-19
 .gallery-image {
-
     aspect-ratio:
         16 / 10;
 
