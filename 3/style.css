@@ -1891,6 +1891,51 @@ body {
 }
 
 
+.gallery-item-11 {
+    grid-column:
+    span 5;
+}
+
+.gallery-item-12 {
+    grid-column: span 7;
+    margin-top: 100px;
+}
+
+.gallery-item-13 {
+    grid-column: span 4;
+}
+
+.gallery-item-14 {
+    grid-column: span 8;
+}
+
+.gallery-item-15 {
+    grid-column: span 7;
+}
+
+.gallery-item-16 {
+    grid-column: span 5;
+    margin-top: 80px;
+}
+
+.gallery-item-17 {
+    grid-column: span 5;
+}
+
+.gallery-item-18 {
+    grid-column: span 7;
+    margin-top: 100px;
+}
+
+.gallery-item-19 {
+    grid-column: span 8;
+}
+
+.gallery-item-20 {
+    grid-column: span 4;
+    margin-top: 100px;
+}
+
 .gallery-image {
 
     position:
