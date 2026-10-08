@@ -11,15 +11,15 @@ const CONFIG = {
         {
             image: "images/foto1.jpg",
             number: "01",
-            title: "The beginning",
-            caption: "Satu momen kecil yang ternyata jadi awal dari banyak cerita."
+            title: "Ada siapa di MPP?",
+            caption: "semuanya memang berawal jauh dimulai, dari sini, sebenernya kita juga ga saling kenal, dan kita masih saling fokus kepentingan kita masing masing, aku masih redflag, kamu masih dengan kehidupan kamu, semuanya ga saling kenal tapi disini kita mulai semuanya."
         },
 
         {
             image: "images/foto2.jpg",
             number: "02",
-            title: "That day",
-            caption: "Hari biasa yang akhirnya punya tempat spesial."
+            title: "bagi takjil penuh makna",
+            caption: "jauh sebelum ini kita memulai semuanya dari menwa, disini kita mulai daket banget, jujur suka banget ngusilin sambil pat pat kepala kamu, boncengan sambil peluk, berdua dan masih banyak lagi."
         },
 
         {
