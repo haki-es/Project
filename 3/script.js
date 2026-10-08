@@ -3,13 +3,11 @@
 ========================================================= */
 
 const CONFIG = {
-
     partnerName: "someone special",
 
     music: "audio/lagu.mp3",
 
     memories: [
-
         {
             image: "images/foto1.jpg",
             number: "01",
@@ -82,75 +80,80 @@ const CONFIG = {
 
         {
             image: "images/foto11.jpg",
-    number: "11",
-    title: "Another chapter",
-    caption: "Satu kenangan lagi yang layak disimpan."
-},
-{
-    image: "images/foto12.jpg",
-    number: "12",
-    title: "A little moment",
-    caption: "Momen sederhana yang tetap punya cerita."
-},
-{
-    image: "images/foto13.jpg",
-    number: "13",
-    title: "Good memory",
-    caption: "Satu frame kecil dari perjalanan yang panjang."
-},
-{
-    image: "images/foto14.jpg",
-    number: "14",
-    title: "That smile",
-    caption: "Ada beberapa momen yang selalu enak untuk diingat."
-},
-{
-    image: "images/foto15.jpg",
-    number: "15",
-    title: "Another day",
-    caption: "Hari lain, cerita lain, kenangan yang sama berharganya."
-},
-{
-    image: "images/foto16.jpg",
-    number: "16",
-    title: "Still here",
-    caption: "Semakin banyak cerita yang akhirnya tersimpan."
-},
-{
-    image: "images/foto17.jpg",
-    number: "17",
-    title: "One more",
-    caption: "Satu foto lagi untuk melengkapi perjalanan ini."
-},
-{
-    image: "images/foto18.jpg",
-    number: "18",
-    title: "Little happiness",
-    caption: "Hal kecil yang ternyata berhasil jadi kenangan besar."
-},
-{
-    image: "images/foto19.jpg",
-    number: "19",
-    title: "Almost twenty",
-    caption: "Tinggal satu frame lagi sebelum koleksi ini lengkap."
-},
-{
-    image: "images/foto20.jpg",
-    number: "20",
-    title: "For the memories",
-    caption: "Dua puluh frame, dan masih banyak cerita setelahnya."
-}
+            number: "11",
+            title: "Another chapter",
+            caption: "Satu kenangan lagi yang layak disimpan."
+        },
 
+        {
+            image: "images/foto12.jpg",
+            number: "12",
+            title: "A little moment",
+            caption: "Momen sederhana yang tetap punya cerita."
+        },
+
+        {
+            image: "images/foto13.jpg",
+            number: "13",
+            title: "Good memory",
+            caption: "Satu frame kecil dari perjalanan yang panjang."
+        },
+
+        {
+            image: "images/foto14.jpg",
+            number: "14",
+            title: "That smile",
+            caption: "Ada beberapa momen yang selalu enak untuk diingat."
+        },
+
+        {
+            image: "images/foto15.jpg",
+            number: "15",
+            title: "Another day",
+            caption: "Hari lain, cerita lain, kenangan yang sama berharganya."
+        },
+
+        {
+            image: "images/foto16.jpg",
+            number: "16",
+            title: "Still here",
+            caption: "Semakin banyak cerita yang akhirnya tersimpan."
+        },
+
+        {
+            image: "images/foto17.jpg",
+            number: "17",
+            title: "One more",
+            caption: "Satu foto lagi untuk melengkapi perjalanan ini."
+        },
+
+        {
+            image: "images/foto18.jpg",
+            number: "18",
+            title: "Little happiness",
+            caption: "Hal kecil yang ternyata berhasil jadi kenangan besar."
+        },
+
+        {
+            image: "images/foto19.jpg",
+            number: "19",
+            title: "Almost twenty",
+            caption: "Tinggal satu frame lagi sebelum koleksi ini lengkap."
+        },
+
+        {
+            image: "images/foto20.jpg",
+            number: "20",
+            title: "For the memories",
+            caption: "Dua puluh frame, dan masih banyak cerita setelahnya."
+        }
     ]
-
 };
 
 
 /* =========================================================
-   DOM
+   DOM ELEMENTS
 ========================================================= */
-
-const pages = document.querySelectorAll(".page");
 
 const chapterIndicator =
     document.getElementById("chapterIndicator");
@@ -194,7 +197,7 @@ let currentPage = "page1";
 
 let musicWanted = false;
 
-let currentMusicVolume = 0.45;
+const MUSIC_VOLUME = 0.45;
 
 
 /* =========================================================
@@ -203,7 +206,7 @@ let currentMusicVolume = 0.45;
 
 function init() {
 
-    applyConfiguration();
+    setupConfiguration();
 
     renderGallery();
 
@@ -228,21 +231,15 @@ function init() {
    CONFIGURATION
 ========================================================= */
 
-function applyConfiguration() {
+function setupConfiguration() {
 
     partnerElements.forEach(element => {
-
-        element.textContent =
-            CONFIG.partnerName;
-
+        element.textContent = CONFIG.partnerName;
     });
 
+    backgroundMusic.src = CONFIG.music;
 
-    backgroundMusic.src =
-        CONFIG.music;
-
-    backgroundMusic.volume =
-        currentMusicVolume;
+    backgroundMusic.volume = MUSIC_VOLUME;
 
 }
 
@@ -253,17 +250,18 @@ function applyConfiguration() {
 
 function renderGallery() {
 
-    galleryGrid.innerHTML = "";
+    if (!galleryGrid) {
+        return;
+    }
 
+    galleryGrid.innerHTML = "";
 
     CONFIG.memories.forEach((memory, index) => {
 
-        const card =
-            document.createElement("article");
+        const card = document.createElement("article");
 
         card.className =
             `gallery-item gallery-item-${index + 1} reveal`;
-
 
         card.innerHTML = `
 
@@ -283,7 +281,6 @@ function renderGallery() {
 
             </div>
 
-
             <div class="gallery-info">
 
                 <div class="gallery-title">
@@ -298,13 +295,9 @@ function renderGallery() {
 
         `;
 
-
         galleryGrid.appendChild(card);
 
     });
-
-
-    setupRevealAnimation();
 
 }
 
@@ -315,45 +308,44 @@ function renderGallery() {
 
 function setupNavigation() {
 
-    enterButton.addEventListener(
-        "click",
-        () => {
+    if (enterButton) {
+
+        enterButton.addEventListener("click", () => {
 
             goToPage("page2");
 
             attemptMusicStart();
 
-        }
-    );
+        });
+
+    }
 
 
     document
         .querySelectorAll("[data-next]")
         .forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+            button.addEventListener("click", () => {
 
-                    const target =
-                        button.dataset.next;
+                const target =
+                    button.dataset.next;
 
-                    goToPage(target);
+                goToPage(target);
 
-                }
-            );
+            });
 
         });
 
 
-    restartButton.addEventListener(
-        "click",
-        () => {
+    if (restartButton) {
+
+        restartButton.addEventListener("click", () => {
 
             goToPage("page1");
 
-        }
-    );
+        });
+
+    }
 
 }
 
@@ -376,7 +368,7 @@ function goToPage(targetId) {
         document.getElementById(targetId);
 
 
-    if (!newPage) {
+    if (!oldPage || !newPage) {
         return;
     }
 
@@ -396,8 +388,7 @@ function goToPage(targetId) {
     newPage.classList.add("active");
 
 
-    currentPage =
-        targetId;
+    currentPage = targetId;
 
 
     updateInterface(targetId);
@@ -409,13 +400,13 @@ function goToPage(targetId) {
     });
 
 
-    if (targetId !== "page4") {
+    if (
+        targetId !== "page4" &&
+        memoryVideo &&
+        !memoryVideo.paused
+    ) {
 
-        if (!memoryVideo.paused) {
-
-            memoryVideo.pause();
-
-        }
+        memoryVideo.pause();
 
     }
 
@@ -432,21 +423,26 @@ function goToPage(targetId) {
 function updateInterface(pageId) {
 
     const number =
-        Number(
-            pageId.replace("page", "")
-        );
+        Number(pageId.replace("page", ""));
 
 
-    chapterIndicator.textContent =
-        `${String(number).padStart(2, "0")} / 05`;
+    if (chapterIndicator) {
+
+        chapterIndicator.textContent =
+            `${String(number).padStart(2, "0")} / 05`;
+
+    }
 
 
-    const percentage =
-        ((number - 1) / 4) * 100;
+    if (progressBar) {
 
+        const percentage =
+            ((number - 1) / 4) * 100;
 
-    progressBar.style.width =
-        `${percentage}%`;
+        progressBar.style.width =
+            `${percentage}%`;
+
+    }
 
 }
 
@@ -457,6 +453,10 @@ function updateInterface(pageId) {
 
 function setupMusic() {
 
+    if (!musicButton) {
+        return;
+    }
+
     musicButton.addEventListener(
         "click",
         toggleMusic
@@ -464,6 +464,10 @@ function setupMusic() {
 
 }
 
+
+/* =========================================================
+   MUSIC TOGGLE
+========================================================= */
 
 async function toggleMusic() {
 
@@ -480,6 +484,10 @@ async function toggleMusic() {
 }
 
 
+/* =========================================================
+   PLAY MUSIC
+========================================================= */
+
 async function playMusic() {
 
     try {
@@ -493,13 +501,17 @@ async function playMusic() {
     } catch (error) {
 
         console.log(
-            "Music membutuhkan interaksi pengguna."
+            "Browser menunggu interaksi pengguna sebelum memutar musik."
         );
 
     }
 
 }
 
+
+/* =========================================================
+   PAUSE MUSIC
+========================================================= */
 
 function pauseMusic() {
 
@@ -512,7 +524,16 @@ function pauseMusic() {
 }
 
 
+/* =========================================================
+   MUSIC UI
+========================================================= */
+
 function setMusicUI(isPlaying) {
+
+    if (!musicLabel || !musicButton) {
+        return;
+    }
+
 
     if (isPlaying) {
 
@@ -538,7 +559,7 @@ function setMusicUI(isPlaying) {
 
 
 /* =========================================================
-   AUTO START MUSIC
+   AUTO MUSIC
 ========================================================= */
 
 function attemptMusicStart() {
@@ -565,103 +586,140 @@ function setupVideo() {
 
     memoryVideo.addEventListener(
         "play",
-        () => {
-
-            /*
-                Kalau musik sedang menyala,
-                simpan status bahwa user memang
-                ingin musik tetap menyala.
-            */
-
-            if (!backgroundMusic.paused) {
-
-                musicWanted = true;
-
-                backgroundMusic.pause();
-
-                setMusicUI(false);
-
-            }
-
-
-            videoStatus.textContent =
-                "PLAYING";
-
-            videoStatus.classList.add(
-                "active"
-            );
-
-        }
+        handleVideoPlay
     );
 
 
     memoryVideo.addEventListener(
         "pause",
-        () => {
-
-            videoStatus.textContent =
-                "PAUSED";
-
-            videoStatus.classList.remove(
-                "active"
-            );
-
-
-            /*
-                Kalau sebelumnya musik memang
-                sedang dipakai, musik dilanjutkan.
-            */
-
-            if (
-                musicWanted &&
-                currentPage === "page4"
-            ) {
-
-                playMusic();
-
-            }
-
-        }
+        handleVideoPause
     );
 
 
     memoryVideo.addEventListener(
         "ended",
-        () => {
-
-            videoStatus.textContent =
-                "FINISHED";
-
-            videoStatus.classList.remove(
-                "active"
-            );
-
-
-            if (
-                musicWanted &&
-                currentPage === "page4"
-            ) {
-
-                playMusic();
-
-            }
-
-        }
+        handleVideoEnded
     );
 
 
     memoryVideo.addEventListener(
         "error",
-        () => {
+        handleVideoError
+    );
 
-            videoStatus.textContent =
-                "ADD VIDEO";
+}
 
-            videoStatus.classList.remove(
-                "active"
-            );
 
-        }
+/* =========================================================
+   VIDEO PLAY
+========================================================= */
+
+function handleVideoPlay() {
+
+    if (!backgroundMusic.paused) {
+
+        musicWanted = true;
+
+        backgroundMusic.pause();
+
+        setMusicUI(false);
+
+    }
+
+
+    if (videoStatus) {
+
+        videoStatus.textContent =
+            "PLAYING";
+
+        videoStatus.classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VIDEO PAUSE
+========================================================= */
+
+function handleVideoPause() {
+
+    if (videoStatus) {
+
+        videoStatus.textContent =
+            "PAUSED";
+
+        videoStatus.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    resumeMusicAfterVideo();
+
+}
+
+
+/* =========================================================
+   VIDEO ENDED
+========================================================= */
+
+function handleVideoEnded() {
+
+    if (videoStatus) {
+
+        videoStatus.textContent =
+            "FINISHED";
+
+        videoStatus.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    resumeMusicAfterVideo();
+
+}
+
+
+/* =========================================================
+   RESUME MUSIC
+========================================================= */
+
+function resumeMusicAfterVideo() {
+
+    if (
+        musicWanted &&
+        currentPage === "page4"
+    ) {
+
+        playMusic();
+
+    }
+
+}
+
+
+/* =========================================================
+   VIDEO ERROR
+========================================================= */
+
+function handleVideoError() {
+
+    if (!videoStatus) {
+        return;
+    }
+
+    videoStatus.textContent =
+        "ADD VIDEO";
+
+    videoStatus.classList.remove(
+        "active"
     );
 
 }
@@ -674,9 +732,18 @@ function setupVideo() {
 function setupRevealAnimation() {
 
     const elements =
-        document.querySelectorAll(
-            ".reveal"
-        );
+        document.querySelectorAll(".reveal");
+
+
+    if (!("IntersectionObserver" in window)) {
+
+        elements.forEach(element => {
+            element.classList.add("visible");
+        });
+
+        return;
+
+    }
 
 
     const observer =
@@ -685,12 +752,14 @@ function setupRevealAnimation() {
 
                 entries.forEach(entry => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    if (entry.isIntersecting) {
 
                         entry.target.classList.add(
                             "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
                         );
 
                     }
@@ -713,12 +782,19 @@ function setupRevealAnimation() {
 }
 
 
+/* =========================================================
+   PAGE REVEAL
+========================================================= */
+
 function revealPage(page) {
 
+    if (!page) {
+        return;
+    }
+
+
     const elements =
-        page.querySelectorAll(
-            ".reveal"
-        );
+        page.querySelectorAll(".reveal");
 
 
     elements.forEach(
@@ -745,9 +821,12 @@ function revealPage(page) {
 function createParticles() {
 
     const container =
-        document.getElementById(
-            "particles"
-        );
+        document.getElementById("particles");
+
+
+    if (!container) {
+        return;
+    }
 
 
     const amount =
@@ -823,6 +902,7 @@ function setupPageScroll() {
                     const scroll =
                         page.scrollTop;
 
+
                     const height =
                         page.scrollHeight -
                         page.clientHeight;
@@ -864,7 +944,7 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   START
+   START APPLICATION
 ========================================================= */
 
 document.addEventListener(
