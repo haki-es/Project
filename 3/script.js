@@ -80,6 +80,67 @@ const CONFIG = {
             caption: "Satu frame lagi untuk disimpan sebelum kita lanjut ke cerita berikutnya."
         }
 
+        {
+            image: "images/foto11.jpg",
+    number: "11",
+    title: "Another chapter",
+    caption: "Satu kenangan lagi yang layak disimpan."
+},
+{
+    image: "images/foto12.jpg",
+    number: "12",
+    title: "A little moment",
+    caption: "Momen sederhana yang tetap punya cerita."
+},
+{
+    image: "images/foto13.jpg",
+    number: "13",
+    title: "Good memory",
+    caption: "Satu frame kecil dari perjalanan yang panjang."
+},
+{
+    image: "images/foto14.jpg",
+    number: "14",
+    title: "That smile",
+    caption: "Ada beberapa momen yang selalu enak untuk diingat."
+},
+{
+    image: "images/foto15.jpg",
+    number: "15",
+    title: "Another day",
+    caption: "Hari lain, cerita lain, kenangan yang sama berharganya."
+},
+{
+    image: "images/foto16.jpg",
+    number: "16",
+    title: "Still here",
+    caption: "Semakin banyak cerita yang akhirnya tersimpan."
+},
+{
+    image: "images/foto17.jpg",
+    number: "17",
+    title: "One more",
+    caption: "Satu foto lagi untuk melengkapi perjalanan ini."
+},
+{
+    image: "images/foto18.jpg",
+    number: "18",
+    title: "Little happiness",
+    caption: "Hal kecil yang ternyata berhasil jadi kenangan besar."
+},
+{
+    image: "images/foto19.jpg",
+    number: "19",
+    title: "Almost twenty",
+    caption: "Tinggal satu frame lagi sebelum koleksi ini lengkap."
+},
+{
+    image: "images/foto20.jpg",
+    number: "20",
+    title: "For the memories",
+    caption: "Dua puluh frame, dan masih banyak cerita setelahnya."
+}
+
     ]
 
 };
