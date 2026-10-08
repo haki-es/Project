@@ -78,7 +78,7 @@ const CONFIG = {
             number: "10",
             title: "For later",
             caption: "Satu frame lagi untuk disimpan sebelum kita lanjut ke cerita berikutnya."
-        }
+        },
 
         {
             image: "images/foto11.jpg",
