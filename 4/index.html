@@ -2,539 +2,251 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hal-hal yang Aku Simpan ♡</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
-
-:root {
-  --night: #100d19;
-  --purple: #38243f;
-  --pink: #d7a9c3;
-  --white: #f4e8f0;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  min-height: 100%;
-}
-
-body {
-  overflow: hidden;
-  background: var(--night);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-}
-
-.scene {
-  position: relative;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    radial-gradient(ellipse at 50% 36%, #4a2c4d 0%, #24182e 33%, #100d19 73%);
-}
-
-/* Cahaya yang bergerak di langit */
-.aurora {
-  position: absolute;
-  inset: -40%;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse at 35% 45%, #88557935, transparent 35%),
-    radial-gradient(ellipse at 65% 55%, #5b487d30, transparent 38%),
-    radial-gradient(ellipse at 50% 80%, #b56b9230, transparent 35%);
-  filter: blur(40px);
-  animation: aurora 16s ease-in-out infinite alternate;
-}
-
-@keyframes aurora {
-  from { transform: translate(-3%, -2%) rotate(-5deg) scale(1); }
-  to   { transform: translate(4%, 3%) rotate(8deg) scale(1.13); }
-}
-
-/* Bintang */
-#stars {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Bulan */
-.moon-area {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  width: clamp(155px, 24vw, 260px);
-  aspect-ratio: 1;
-  transform: translateX(-50%);
-  animation: moonFloat 7s ease-in-out infinite;
-}
-
-.moon-glow {
-  position: absolute;
-  inset: -36%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #dca9ce25 0%, #dca9ce0c 42%, transparent 68%);
-  animation: glow 5s ease-in-out infinite alternate;
-}
-
-.moon {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 32% 25%, #fff4e8 0%, #f0d5e5 18%, #c69abf 49%, #85678f 78%, #4d3b61 100%);
-  box-shadow:
-    0 0 25px #d9a5ca30,
-    0 0 70px #c38bb52b,
-    inset -18px -13px 35px #39244465,
-    inset 8px 7px 25px #fff5f133;
-}
-
-.moon::before,
-.moon::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: #8d6a9670;
-  box-shadow: inset 3px 3px 8px #543b5b40;
-}
-
-.moon::before {
-  width: 24%;
-  aspect-ratio: 1;
-  top: 24%;
-  left: 20%;
-}
-
-.moon::after {
-  width: 15%;
-  aspect-ratio: 1;
-  top: 56%;
-  left: 57%;
-  box-shadow:
-    -68px -20px 0 -8px #8d6a9655,
-    17px 30px 0 -5px #8d6a9655;
-}
-
-.moon-ring {
-  position: absolute;
-  inset: -14%;
-  border: 1px solid #e8c9df24;
-  border-radius: 50%;
-  animation: ringRotate 36s linear infinite;
-}
-
-.moon-ring::before,
-.moon-ring::after {
-  content: "✦";
-  position: absolute;
-  color: #f2d8ed;
-  font-size: 13px;
-  text-shadow: 0 0 12px #efbde8;
-}
-
-.moon-ring::before { top: 12%; left: 24%; }
-.moon-ring::after { bottom: 13%; right: 22%; font-size: 9px; }
-
-@keyframes moonFloat {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -13px); }
-}
-
-@keyframes glow {
-  from { opacity: .55; transform: scale(.93); }
-  to { opacity: 1; transform: scale(1.1); }
-}
-
-@keyframes ringRotate {
-  to { transform: rotate(360deg); }
-}
-
-/* Teks utama */
-.content {
-  position: relative;
-  z-index: 2;
-  width: min(90%, 900px);
-  margin-top: clamp(210px, 27vh, 270px);
-  text-align: center;
-  animation: reveal 1.5s .3s both;
-}
-
-.eyebrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 13px;
-  color: #d7b5cf;
-  font-size: 10px;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  margin-bottom: 23px;
-  opacity: .85;
-}
-
-.eyebrow::before,
-.eyebrow::after {
-  content: "";
-  width: 26px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #d7b5cf);
-}
-
-.eyebrow::after {
-  transform: rotate(180deg);
-}
-
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: clamp(43px, 7.4vw, 88px);
-  line-height: .99;
-  letter-spacing: -.035em;
-  text-wrap: balance;
-  text-shadow: 0 4px 35px #e6b7db20;
-}
-
-h1 em {
-  display: block;
-  margin-top: 9px;
-  color: #dfb4d0;
-  font-weight: 400;
-}
-
-.subtitle {
-  max-width: 390px;
-  margin: 24px auto 29px;
-  color: #c4b2c5;
-  font-size: 12px;
-  line-height: 2;
-  font-weight: 300;
-  animation: reveal 1.2s 1s both;
-}
-
-/* Tombol */
-.open-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 24px;
-  padding: 14px 19px;
-  border: 1px solid #dfb4d055;
-  border-radius: 100px;
-  background: #ffffff08;
-  color: #f6e8f2;
-  font-size: 11px;
-  letter-spacing: .05em;
-  cursor: pointer;
-  overflow: hidden;
-  backdrop-filter: blur(12px);
-  transition: .35s ease;
-  animation: reveal 1.2s 1.3s both;
-}
-
-.open-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -100%;
-  width: 65%;
-  background: linear-gradient(90deg, transparent, #ffffff20, transparent);
-  transform: skewX(-20deg);
-  transition: left .65s;
-}
-
-.open-button:hover::before { left: 150%; }
-
-.open-button:hover {
-  border-color: #e7c1dc;
-  background: #d5a6c31b;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 35px #d5a6c31b;
-}
-
-.arrow {
-  color: #e8bfdc;
-  font-size: 17px;
-  transition: transform .3s;
-}
-
-.open-button:hover .arrow {
-  transform: translateX(4px);
-}
-
-/* Dekorasi bawah */
-.footer {
-  position: absolute;
-  bottom: 25px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 9px;
-  color: #8f7a98;
-  font-size: 9px;
-  letter-spacing: .12em;
-  animation: reveal 1.4s 1.6s both;
-}
-
-.footer-heart {
-  color: #d7a5c6;
-  animation: heartbeat 2s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  12% { transform: scale(1.25); }
-  24% { transform: scale(1); }
-  36% { transform: scale(1.15); }
-}
-
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(22px); filter: blur(5px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-
-/* Hati saat layar diklik */
-.heart-particle {
-  position: fixed;
-  z-index: 10;
-  pointer-events: none;
-  color: #f0bfdc;
-  text-shadow: 0 0 15px #e7a7d4;
-  animation: heartFly 1.6s ease-out forwards;
-}
-
-@keyframes heartFly {
-  0% { opacity: 0; transform: translate(-50%, 0) scale(.4) rotate(-15deg); }
-  15% { opacity: 1; }
-  100% { opacity: 0; transform: translate(calc(-50% + var(--drift)), -130px) scale(1.3) rotate(25deg); }
-}
-
-/* Transisi keluar */
-.scene.leaving .content {
-  animation: leave .75s ease forwards;
-}
-
-.scene.leaving .moon-area {
-  animation: moonLeave .85s ease forwards;
-}
-
-@keyframes leave {
-  to { opacity: 0; transform: translateY(-25px) scale(.97); filter: blur(7px); }
-}
-
-@keyframes moonLeave {
-  to { opacity: 0; transform: translate(-50%, -40px) scale(1.2); filter: blur(12px); }
-}
-
-@media (max-height: 680px) {
-  .moon-area { top: 7%; width: clamp(110px, 20vh, 175px); }
-  .content { margin-top: 185px; }
-  h1 { font-size: clamp(40px, 7vh, 65px); }
-  .subtitle { margin: 14px auto 18px; }
-}
-
-@media (max-width: 480px) {
-  .moon-area { top: 15%; width: 165px; }
-  .content { margin-top: 205px; }
-  .eyebrow { font-size: 8px; letter-spacing: .2em; }
-  h1 { font-size: clamp(42px, 12vw, 60px); }
-  .subtitle { font-size: 11px; max-width: 290px; }
-  .footer { font-size: 8px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f1">
+  <title>Untuk Kamu, Selalu ♡</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<main class="scene" id="scene">
-  <div class="aurora"></div>
-  <canvas id="stars"></canvas>
 
-  <div class="moon-area" aria-hidden="true">
-    <div class="moon-glow"></div>
-    <div class="moon-ring"></div>
-    <div class="moon"></div>
-  </div>
+  <div class="grain"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-  <section class="content">
-    <p class="eyebrow">a little piece of my heart</p>
+  <audio id="backgroundMusic" src="audio/lagu.mp3" loop preload="auto"></audio>
 
-    <h1>
-      Hal-hal yang
-      <em>aku simpan.</em>
-    </h1>
+  <main>
+    <!-- HALAMAN 1: PEMBUKA -->
+    <section class="page landing active" id="page1">
+      <div class="tiny-label">A LITTLE SOMETHING FOR YOU</div>
 
-    <p class="subtitle">
-      Ada beberapa hal yang mungkin jarang aku ucapkan,
-      tapi selalu punya tempat di dalam hati.
-      Malam ini, aku mau cerita sedikit ke kamu.
-    </p>
+      <div class="floating-stars" aria-hidden="true">
+        <i>✦</i><i>✧</i><i>♡</i><i>✦</i><i>·</i><i>✧</i>
+      </div>
 
-    <button class="open-button" id="openButton">
-      <span>Buka pesan ini</span>
-      <span class="arrow">↗</span>
-    </button>
-  </section>
+      <div class="moon"><span></span></div>
 
-  <footer class="footer">
-    <span class="footer-heart">♡</span>
-    <span>DITULIS DENGAN HATI, UNTUK KAMU</span>
-    <span class="footer-heart">♡</span>
-  </footer>
-</main>
+      <div class="landing-copy">
+        <p class="eyebrow">Untuk seseorang yang berarti</p>
+        <h1>A little world<br> <em>just for you.</em></h1>
+        <p class="muted landing-note">
+          Ada beberapa hal yang ingin aku ceritakan.<br>
+          Jadi, kali ini aku menuliskannya khusus untuk kamu.
+        </p>
 
-<script>
-const canvas = document.getElementById('stars');
-const ctx = canvas.getContext('2d');
-const scene = document.getElementById('scene');
+        <button class="primary-button" id="openButton">
+          <span>Buka cerita kita</span>
+          <span>↗</span>
+        </button>
+      </div>
 
-let width, height, stars = [], shootingStars = [];
-let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      <div class="bottom-note">
+        <span class="pulse-dot"></span>
+        MADE WITH LOVE, JUST FOR YOU
+      </div>
+    </section>
 
-function resize() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    <!-- HALAMAN 2: SURAT -->
+    <section class="page letter-page" id="page2">
+      <header class="chapter-head">
+        <span class="chapter-number">CHAPTER 01 · A LETTER</span>
+        <button class="music-toggle" id="musicToggle">
+          <span id="musicIcon">♫</span>
+          <span id="musicLabel">Musik menyala</span>
+        </button>
+      </header>
 
-  stars = Array.from(
-    { length: Math.min(170, Math.floor(width * height / 6500)) },
-    () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 1.4 + .25,
-      alpha: Math.random() * .65 + .2,
-      speed: Math.random() * .012 + .003,
-      phase: Math.random() * Math.PI * 2
-    })
-  );
-}
+      <article class="letter-card">
+        <p class="eyebrow">Dari hati yang sederhana,</p>
+        <h2>Hal-hal yang<br><em>ingin aku bilang.</em></h2>
 
-function drawStars(time) {
-  ctx.clearRect(0, 0, width, height);
+        <div class="letter-body">
+          <p>
+            Hai, kamu. Kalau kamu sedang membaca ini, berarti kamu sudah
+            membuka sesuatu yang sengaja aku buat untuk kamu. Mungkin
+            kelihatannya sederhana, cuma sebuah website kecil. Tapi di
+            balik setiap tulisan dan bagian yang ada di sini, ada waktu,
+            pikiran, dan perasaan yang ingin aku sampaikan.
+          </p>
 
-  for (const s of stars) {
-    const twinkle = .45 + .55 * Math.sin(time * s.speed + s.phase);
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(245,220,246,${s.alpha * twinkle})`;
-    ctx.fill();
+          <p>
+            Aku mungkin bukan orang yang selalu pandai merangkai kata.
+            Kadang aku tahu apa yang aku rasakan, tetapi bingung bagaimana
+            cara menjelaskannya. Ada banyak hal yang ingin aku ceritakan
+            secara langsung, tetapi tidak semuanya bisa keluar dengan
+            sempurna. Jadi, kali ini aku mencoba menuliskannya satu per satu.
+          </p>
 
-    if (s.r > 1.1) {
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r * 3.2, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(225,181,223,${twinkle * .07})`;
-      ctx.fill();
-    }
-  }
+          <p>
+            Terima kasih karena sudah hadir dalam hari-hariku. Terima kasih
+            untuk percakapan kecil kita, cerita random yang kadang nggak
+            penting tetapi tetap menyenangkan, waktu yang kita habiskan
+            bersama, dan hal-hal sederhana yang mungkin terlihat biasa
+            tetapi berarti buat aku.
+          </p>
 
-  shootingStars = shootingStars.filter(s => s.life > 0);
+          <p>
+            Aku suka bagaimana momen sederhana bisa berubah menjadi
+            kenangan yang ingin aku simpan. Jalan bersama, tertawa karena
+            sesuatu yang receh, saling menceritakan hari yang melelahkan,
+            atau sekadar menemani satu sama lain tanpa harus melakukan
+            sesuatu yang istimewa.
+          </p>
 
-  for (const s of shootingStars) {
-    s.x += s.vx;
-    s.y += s.vy;
-    s.life -= 1;
+          <p>
+            Aku juga sadar kalau hubungan kita nggak selalu berjalan mulus.
+            Kita punya pikiran masing-masing, perasaan masing-masing, dan
+            cara yang berbeda dalam menghadapi sesuatu. Ada kalanya kita
+            salah paham, ada kalanya kata-kata kita nggak tersampaikan
+            dengan baik, dan ada kalanya kita sama-sama membutuhkan waktu
+            untuk memahami keadaan.
+          </p>
 
-    const gradient = ctx.createLinearGradient(
-      s.x, s.y, s.x - s.vx * 12, s.y - s.vy * 12
-    );
-    gradient.addColorStop(0, 'rgba(255,238,255,.9)');
-    gradient.addColorStop(1, 'rgba(213,164,220,0)');
+          <p>
+            Kalau suatu hari aku membuat kamu kecewa, aku ingin belajar
+            mendengarkan kamu dengan lebih baik. Aku nggak mau cuma sibuk
+            menjelaskan maksudku sendiri sampai lupa memahami apa yang
+            kamu rasakan. Aku juga masih belajar menjadi seseorang yang
+            bisa berkomunikasi dengan lebih tenang dan dewasa.
+          </p>
 
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(s.x, s.y);
-    ctx.lineTo(s.x - s.vx * 12, s.y - s.vy * 12);
-    ctx.stroke();
-  }
+          <p>
+            Aku nggak bisa menjanjikan bahwa setiap hari akan selalu
+            menyenangkan. Tapi aku berharap kita bisa terus belajar
+            menghargai satu sama lain, membicarakan masalah dengan baik,
+            dan nggak menganggap perasaan salah satu dari kita sebagai
+            sesuatu yang sepele.
+          </p>
 
-  requestAnimationFrame(drawStars);
-}
+          <p>
+            Buat aku, menyayangi seseorang bukan cuma tentang mengatakan
+            hal-hal manis. Ada juga usaha untuk hadir, menghargai batasan,
+            menepati perkataan, mengakui kesalahan, dan memperbaiki hal-hal
+            yang memang perlu diperbaiki.
+          </p>
 
-function createShootingStar() {
-  if (document.hidden) return;
+          <p>
+            Aku ingin kita punya banyak kenangan baik yang bisa kita ingat
+            nanti. Bukan karena semuanya sempurna, melainkan karena kita
+            pernah berusaha membuat sesuatu yang berarti bersama-sama.
+            Aku ingin kita bisa tumbuh, mengejar tujuan masing-masing,
+            dan tetap saling mendukung tanpa kehilangan diri sendiri.
+          </p>
 
-  shootingStars.push({
-    x: Math.random() * width * .9,
-    y: Math.random() * height * .35,
-    vx: 5 + Math.random() * 4,
-    vy: 2 + Math.random() * 2,
-    life: 22 + Math.random() * 15
-  });
+          <p>
+            Kalau kamu sedang capek, semoga kamu ingat bahwa kamu nggak
+            harus selalu terlihat kuat. Kamu boleh bercerita, boleh
+            beristirahat, dan boleh mengambil waktu untuk dirimu sendiri.
+            Aku ingin kita bisa menjadi tempat yang nyaman untuk saling
+            bercerita, tanpa harus takut langsung dihakimi.
+          </p>
 
-  setTimeout(createShootingStar, 1800 + Math.random() * 3800);
-}
+          <p>
+            Terakhir, terima kasih sudah menjadi bagian dari ceritaku
+            sampai hari ini. Aku menghargai setiap waktu yang sudah kita
+            lewati. Semoga masih ada banyak hal sederhana yang bisa kita
+            tertawakan, banyak tempat yang bisa kita kunjungi, dan banyak
+            cerita baru yang bisa kita buat.
+          </p>
 
-window.addEventListener('resize', resize);
-resize();
-requestAnimationFrame(drawStars);
-setTimeout(createShootingStar, 1400);
+          <p>
+            Aku menulis semua ini bukan supaya kamu harus membalas dengan
+            kata-kata yang sama. Aku cuma ingin kamu tahu bahwa aku
+            menghargai kamu, hubungan ini, dan kesempatan untuk terus
+            belajar menjadi lebih baik.
+          </p>
 
-function makeHeart(x, y) {
-  const heart = document.createElement('span');
-  heart.className = 'heart-particle';
-  heart.textContent = Math.random() > .35 ? '♡' : '✦';
+          <p class="letter-signoff">
+            Dengan tulus,
+            <br>
+            <em>Seseorang yang sedang belajar menyayangimu dengan lebih baik ♡</em>
+          </p>
+        </div>
+      </article>
 
-  heart.style.left = x + 'px';
-  heart.style.top = y + 'px';
-  heart.style.fontSize = (12 + Math.random() * 19) + 'px';
-  heart.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+      <button class="next-button" data-next="page3">
+        <span>Lihat kenangan kita</span><span>→</span>
+      </button>
+      <p class="page-footer">Satu halaman kecil, banyak hal yang ingin disampaikan.</p>
+    </section>
 
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 1700);
-}
+    <!-- HALAMAN 3: VIDEO KENANGAN -->
+    <section class="page memory-page" id="page3">
+      <header class="chapter-head">
+        <span class="chapter-number">CHAPTER 02 · OUR MEMORIES</span>
+        <button class="music-toggle" id="musicToggle2">
+          <span>♫</span><span>Musik</span>
+        </button>
+      </header>
 
-scene.addEventListener('pointerdown', event => {
-  if (event.target.closest('button')) return;
+      <div class="memory-content">
+        <p class="eyebrow">Some moments stay with us</p>
+        <h2>Potongan kecil<br><em>dari cerita kita.</em></h2>
 
-  for (let i = 0; i < 4; i++) {
-    setTimeout(() => {
-      makeHeart(
-        event.clientX + (Math.random() * 30 - 15),
-        event.clientY + (Math.random() * 30 - 15)
-      );
-    }, i * 65);
-  }
-});
+        <p class="muted memory-intro">
+          Mungkin waktu terus berjalan, tetapi beberapa momen akan selalu
+          punya tempat tersendiri dalam ingatan.
+        </p>
 
-document.getElementById('openButton').addEventListener('click', () => {
-  scene.classList.add('leaving');
+        <div class="video-frame">
+          <div class="video-placeholder" id="videoPlaceholder">
+            <div class="play-symbol">▶</div>
+            <strong>Our little memories</strong>
+            <span>Tambahkan video kenanganmu ke folder video/kenangan.mp4</span>
+          </div>
 
-  // Sambungkan ke halaman surat setelah animasi selesai.
-  setTimeout(() => {
-    window.location.href = 'surat.html';
-  }, 750);
-});
-</script>
+          <video id="memoryVideo" controls playsinline preload="metadata">
+            <source src="video/kenangan.mp4" type="video/mp4">
+            Browser kamu tidak mendukung pemutaran video.
+          </video>
+        </div>
+
+        <p class="video-caption">
+          “Hal sederhana pun bisa menjadi kenangan yang luar biasa.”
+        </p>
+        <p class="muted">Simpan baik-baik momen yang membuat kita tersenyum.</p>
+      </div>
+
+      <button class="next-button" data-next="page4">
+        <span>Lanjutkan cerita</span><span>→</span>
+      </button>
+    </section>
+
+    <!-- HALAMAN 4: PENUTUP -->
+    <section class="page ending-page" id="page4">
+      <div class="ending-orb"></div>
+
+      <div class="ending-content">
+        <p class="eyebrow">And one last thing...</p>
+        <div class="ending-line"></div>
+
+        <h2>Terima kasih sudah<br><em>menjadi bagian cerita ini.</em></h2>
+
+        <p>
+          Aku tahu masih banyak hal yang harus aku pelajari. Aku ingin
+          terus memperbaiki diri, mendengarkan dengan lebih baik, dan
+          menghargai hal-hal kecil yang kita punya.
+        </p>
+
+        <p>
+          Semoga kita bisa terus bertumbuh menjadi pribadi yang lebih baik,
+          saling mendukung mimpi masing-masing, dan menciptakan kenangan
+          yang suatu hari nanti bisa kita ceritakan sambil tersenyum.
+        </p>
+
+        <p class="ending-last">
+          Sampai halaman berikutnya,
+          <br><em>with love, always ♡</em>
+        </p>
+
+        <button class="restart-button" id="restartButton">
+          <span>↺</span> Baca lagi dari awal
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
