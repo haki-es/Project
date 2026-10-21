@@ -15,3 +15,4 @@ Catatan:
 - Musik mulai setelah tombol pembuka diklik, karena browser membatasi autoplay.
 - Video disiapkan dengan rasio landscape 16:9.
 - Foto/video dan lagu pribadi tidak disertakan; tambahkan file milikmu sendiri.
+window.location.href = 'surat.html';
