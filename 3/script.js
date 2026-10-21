@@ -12,14 +12,14 @@ const CONFIG = {
             image: "images/foto1.jpg",
             number: "01",
             title: "Ada siapa di MPP?",
-            caption: "semuanya memang berawal jauh dimulai, dari sini, sebenernya kita juga ga saling kenal, dan kita masih saling fokus kepentingan kita masing masing, aku masih redflag, kamu masih dengan kehidupan kamu, semuanya ga saling kenal tapi disini kita mulai semuanya."
+            caption: "semuanya memang berawal jauh dimulai, dari sini, sebenernya kita juga ga saling kenal, dan masih saling fokus kepentingan kita masing masing, aku masih redflag, kamu masih dengan kehidupan kamu, semuanya ga saling kenal tapi disini kita mulai semuanya. inget gak yang biyen awamu jahilin aku, awamu nyedek i aku e, aku e pas iku gak tek gape tapi jujur aku i rodok tertarik"
         },
 
         {
             image: "images/foto2.jpg",
             number: "02",
-            title: "bagi takjil penuh makna",
-            caption: "jauh sebelum ini kita memulai semuanya dari menwa, disini kita mulai daket banget, jujur suka banget ngusilin sambil pat pat kepala kamu, boncengan sambil peluk, berdua dan masih banyak lagi."
+            title: "bagi takjil",
+            caption: "jauh sebelum ini kita memulai semuanya dari menwa, disini kita mulai daket banget, jujur suka banget ngusilin sambil pat pat kepala kamu, boncengan sambil peluk, berdua dan masih banyak lagi, adewe ngelakuin semua e disitu, eleng ga yang pas awamu pulang jumuk tikar kae, aku tok jak ndek rumahmu pertama kali e, jujur a duh la kok mepet men iki, duh gek dipeluk i, nyantiku ngunu yang 😭, tapi jujur sejak pradik aku bener bener tertarik sama kamu yang🥹."
         },
 
         {
@@ -145,7 +145,7 @@ const CONFIG = {
             image: "images/foto20.jpg",
             number: "20",
             title: "For the memories",
-            caption: "Dua puluh frame, dan masih banyak cerita setelahnya."
+            caption: "ini frame terakhir, tak kosongin bukan berarti kita selesai dan cerita e sampe sini, tapi tak jadikan tanda nek masih banyak hal yang bakalan kita lalui, makasih ya sayangku atas semua perjalanannyaa 🥹 sama aku terus ya sayangku ."
         }
     ]
 };
