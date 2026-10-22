@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&family=Playfair+Display:wght@500;600&display=swap');
+
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(140deg,#fff8f1,#f5dce7,#e9dced);color:#392b35;font-family:'DM Sans',sans-serif}
+.page{display:none;min-height:100vh;padding:75px 18px 40px;align-items:center;justify-content:center;flex-direction:column}
+.page.active{display:flex;animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+h1,h2{font-family:'Playfair Display',serif;font-weight:500;text-align:center}
+h1{font-size:clamp(2.5rem,8vw,4.5rem)}
+h2{font-size:clamp(2rem,6vw,3rem)}
+p{line-height:1.9}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:#b94f70;text-align:center}
+.subtitle{text-align:center;color:#8b7783}
+button{font:inherit;cursor:pointer;border-radius:40px;padding:13px 22px;margin:12px 5px;border:1px solid #ead7dc;background:#fffaf5;color:#72506b}
+.primary{background:#d96e8a;color:white;border:0}
+.card{width:min(850px,100%);padding:clamp(20px,5vw,45px);border-radius:22px;background:#ffffffd9;border:1px solid #ead7dc;box-shadow:0 22px 70px #67364c1c}
+.letter p{margin-bottom:24px;overflow-wrap:anywhere}
+.navigation{text-align:center;margin-top:20px}
+.moon{width:100px;height:100px;background:#fffaf4;border-radius:50%;box-shadow:0 0 80px #eab9ca;margin-bottom:30px;animation:float 5s infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+#music{position:fixed;top:12px;right:12px;z-index:10;margin:0;background:#fffaf0eF}
+.video{width:min(850px,100%);border:6px solid white;border-radius:18px;overflow:hidden;background:#2d222d}
+video{display:block;width:100%;max-height:65vh}
+.heart{color:#d96e8a;font-size:35px;text-align:center}
+</style>
+</head>
+<body>
+
+<audio id="song" loop>
+  <source src="audio/lagu.mp3" type="audio/mpeg">
+</audio>
+<button id="music">♫ Putar musik</button>
+
+<section class="page active" id="p1">
+  <div class="moon"></div>
+  <p class="eyebrow">sebuah surat kecil untukmu</p>
+  <h1>Ada sesuatu<br>yang ingin kusampaikan.</h1>
+  <p class="subtitle">Bacanya pelan-pelan, ya.</p>
+  <button class="primary" id="open">Buka surat ini ♡</button>
+</section>
+
+<section class="page" id="p2">
+  <p class="eyebrow">halaman 01</p>
+  <h2>Untuk kamu</h2>
+  <article class="card letter">
+    <div class="heart">♡</div>
+
+    <p>halo yang kalo udah bangun dibaca ya yang, sayang selamattt pagiii selamattt menjalani hari yaaa aku harap kamu semangat buat hari ini yang, sayang minta maaf mau bahas kemarin dikit yaa yang, maafin aku tentang kemarin ya sayang, aku ngertiin kamune, aku tau di posisimu gimana kamu takut ngerepotin aku ya yang, sayang makasih yaa, gapapa sayangku aku gapapaa kamu repotin makanya aku berusaha buat nyempetin semuanya</p>
+
+    <p>aku paham sayang ini cuma perkara mantan tapi gatau kenapa rasane masih berat aja, aku berusaha memahami posisimu kok sayangku aku gapapa, aku gak tau sayang rasane gimana, sebenere aku memaklumi posisi kamu gimana tapi mungkin orang itu nama e membekas banget ndek hatiku, mungkin dari semua yang udah terjadi aku masih punya rasa yang buruk sama nama itu, jujur waktu sayang nyebut namane atau bilang sesuatu tentang dia aku cuma terdiam, sebenere rasane sesek, aku tau semuane udah selesai tapi mungkin karena yang udah terjadi dulu yang bikin berat, setiap krungu jenenge wonge abot rasa e yang, aku mungkin terlalu banyak kecewa sama nama iku, awamu sering nakut nakutin tentang iku "Iki barang teko ..." sebenere rasane sesek tapi aku sadar wonge masalalumu, aku percaya mbe kamu kabeh wes bar, aku wedi kabeh tentang wonge yang</p>
+
+    <p>maaf ya yang aku nek kurang berpartisipasi ndek keluargamu, ngeliat wonge ngasih sesuatu buat keluargamu aku rasane koyok gagal, aku kemarin pengen ngasih parcell juga, makane ada aku tanya tanya penjual parcel terus DM tiktok nanya nanya parcell tapi pas iku ngepas uangku dan kebetulan sayang mau ketemu, makanya tak duluin ketemu sayang sek, waktu aku ada malah aku belum beliin, otw yang sabar, maafin ya yang, sebenere aku gak sekaku itu yang tapi ya bingung jelasinn e gimana aku kecewa sama diriku sendiri aja</p>
+
+    <p>yang, jaga jarak jaga hati ya yang, aku percaya kok mbe kamu aku ngerti lek kamu wes bar, minta tolong dijaga tenanan ya yang atine, fokus mbe tujuan e ae, nek ada apaa apa cerita ndek aku ya yang, lek lihat kamu marah sama aku dan kamu cerita mbe orange rasane koyok ngeroso gagal ngewehi rasa nyaman ge awamu aku yang, aku bukan musuhmu ya yang seng harus dimusuhi, aku pasanganmu, aku kadang ngerasa iri pol mbe orange, aku tau respon e berbeda, aku sadar lek aku gabisa jadi orange dan orange e gabisa jadi aku, mungkin beberapa seng kamu cari ga ada neng aku tapi aku berusaha adain meski iku bedo mbe carane orange, aku ngak pengen jadi orang lain, tapi buat kamu tak usahakne jadi senyamanmu ya yang,</p>
+
+    <p>intine makasih ya yang, maaf ya yang buat semuane, aku bingung ngomong e gimana, banyak pikiranku seng pengen tak bilangne tapi aku bingung ngomong e piye</p>
+  </article>
+  <div class="navigation">
+    <button data-go="1">← Kembali</button>
+    <button class="primary" data-go="3">Lihat kenangan →</button>
+  </div>
+</section>
+
+<section class="page" id="p3">
+  <p class="eyebrow">halaman 02</p>
+  <h2>Sedikit kenangan kita</h2>
+  <p class="subtitle">Ada hal-hal sederhana yang tetap berarti.</p>
+  <div class="video">
+    <video id="memory" controls playsinline preload="metadata">
+      <source src="video/kenangan.mp4" type="video/mp4">
+      Video tidak dapat diputar.
+    </video>
+  </div>
+  <div class="navigation">
+    <button data-go="2">← Kembali ke surat</button>
+    <button class="primary" data-go="4">Lanjut →</button>
+  </div>
+</section>
+
+<section class="page" id="p4">
+  <div class="heart">♡</div>
+  <p class="eyebrow">halaman terakhir</p>
+  <h2>Maaf dan terima kasih.</h2>
+  <div class="card">
+    <p>intine makasih ya yang, maaf ya yang buat semuane, aku bingung ngomong e gimana, banyak pikiranku seng pengen tak bilangne tapi aku bingung ngomong e piye</p>
+  </div>
+  <button data-go="1">Kembali ke awal</button>
+</section>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const song = document.getElementById('song');
+const musicButton = document.getElementById('music');
+const memory = document.getElementById('memory');
+
+function showPage(number) {
+  pages.forEach(page => page.classList.remove('active'));
+  const target = document.getElementById('p' + number);
+  if (!target) return;
+  target.classList.add('active');
+  window.scrollTo(0, 0);
+  if (number !== 3) memory.pause();
+}
+
+document.getElementById('open').addEventListener('click', async () => {
+  try {
+    await song.play();
+    musicButton.textContent = '♫ Musik aktif';
+  } catch (error) {
+    musicButton.textContent = '♫ Putar musik';
+  }
+  showPage(2);
+});
+
+document.querySelectorAll('[data-go]').forEach(button => {
+  button.addEventListener('click', () => {
+    showPage(Number(button.dataset.go));
+  });
+});
+
+musicButton.addEventListener('click', async () => {
+  if (song.paused) {
+    try {
+      await song.play();
+      musicButton.textContent = '♫ Musik aktif';
+    } catch (error) {
+      musicButton.textContent = '♫ Musik gagal diputar';
+    }
+  } else {
+    song.pause();
+    musicButton.textContent = '♫ Musik dijeda';
+  }
+});
+</script>
+</body>
+</html>
