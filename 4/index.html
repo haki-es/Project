@@ -1,216 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#fff8f1">
-  <title>Untuk Kamu, Selalu ♡</title>
+  <title>Untuk Kamu ♡</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="grain"></div>
   <div class="ambient ambient-one"></div>
   <div class="ambient ambient-two"></div>
 
-  <audio id="backgroundMusic" src="audio/lagu.mp3" loop preload="auto"></audio>
+  <audio id="backgroundMusic" loop>
+    <source src="audio/lagu.mp3" type="audio/mpeg">
+  </audio>
 
+  <button id="musicToggle" class="music-toggle" aria-label="Putar atau jeda musik">
+    ♫ Musik
+  </button>
+
+  <!-- HALAMAN 1: LANDING -->
   <main>
-    <!-- HALAMAN 1: PEMBUKA -->
     <section class="page landing active" id="page1">
-      <div class="tiny-label">A LITTLE SOMETHING FOR YOU</div>
-
       <div class="floating-stars" aria-hidden="true">
-        <i>✦</i><i>✧</i><i>♡</i><i>✦</i><i>·</i><i>✧</i>
+        <span>✦</span>
+        <span>·</span>
+        <span>✧</span>
+        <span>·</span>
+        <span>✦</span>
       </div>
 
-      <div class="moon"><span></span></div>
+      <div class="moon"></div>
 
       <div class="landing-copy">
-        <p class="eyebrow">Untuk seseorang yang berarti</p>
-        <h1>A little world<br> <em>just for you.</em></h1>
-        <p class="muted landing-note">
-          Ada beberapa hal yang ingin aku ceritakan.<br>
-          Jadi, kali ini aku menuliskannya khusus untuk kamu.
+        <p class="eyebrow">sebuah surat kecil untukmu</p>
+        <h1>Ada sesuatu<br>yang ingin kusampaikan.</h1>
+        <p class="subtitle">
+          Bacanya pelan-pelan, ya.
         </p>
-
-        <button class="primary-button" id="openButton">
-          <span>Buka cerita kita</span>
-          <span>↗</span>
+        <button class="primary-button" id="openLetter">
+          Buka surat ini <span>♡</span>
         </button>
       </div>
 
-      <div class="bottom-note">
-        <span class="pulse-dot"></span>
-        MADE WITH LOVE, JUST FOR YOU
-      </div>
+      <div class="bottom-note">dibuat dengan segenap rasa</div>
     </section>
 
-    <!-- HALAMAN 2: SURAT -->
+    <!-- HALAMAN 2: SURAT ASLI -->
     <section class="page letter-page" id="page2">
       <header class="chapter-head">
-        <span class="chapter-number">CHAPTER 01 · A LETTER</span>
-        <button class="music-toggle" id="musicToggle">
-          <span id="musicIcon">♫</span>
-          <span id="musicLabel">Musik menyala</span>
-        </button>
+        <p class="eyebrow">halaman 01</p>
+        <h2>Untuk kamu</h2>
+        <p>Luangkan waktu sebentar untuk membaca, ya.</p>
       </header>
 
       <article class="letter-card">
-        <p class="eyebrow">Dari hati yang sederhana,</p>
-        <h2>Hal-hal yang<br><em>ingin aku bilang.</em></h2>
+        <div class="letter-decoration">♡</div>
 
         <div class="letter-body">
-          <p>
-            Hai, kamu. Kalau kamu sedang membaca ini, berarti kamu sudah
-            membuka sesuatu yang sengaja aku buat untuk kamu. Mungkin
-            kelihatannya sederhana, cuma sebuah website kecil. Tapi di
-            balik setiap tulisan dan bagian yang ada di sini, ada waktu,
-            pikiran, dan perasaan yang ingin aku sampaikan.
-          </p>
+          <p>halo yang kalo udah bangun dibaca ya yang, sayang selamattt pagiii selamattt menjalani hari yaaa aku harap kamu semangat buat hari ini yang, sayang minta maaf mau bahas kemarin dikit yaa yang, maafin aku tentang kemarin ya sayang, aku ngertiin kamune, aku tau di posisimu gimana kamu takut ngerepotin aku ya yang, sayang makasih yaa, gapapa sayangku aku gapapaa kamu repotin makanya aku berusaha buat nyempetin semuanya</p>
 
-          <p>
-            Aku mungkin bukan orang yang selalu pandai merangkai kata.
-            Kadang aku tahu apa yang aku rasakan, tetapi bingung bagaimana
-            cara menjelaskannya. Ada banyak hal yang ingin aku ceritakan
-            secara langsung, tetapi tidak semuanya bisa keluar dengan
-            sempurna. Jadi, kali ini aku mencoba menuliskannya satu per satu.
-          </p>
+          <p>aku paham sayang ini cuma perkara mantan tapi gatau kenapa rasane masih berat aja, aku berusaha memahami posisimu kok sayangku aku gapapa, aku gak tau sayang rasane gimana, sebenere aku memaklumi posisi kamu gimana tapi mungkin orang itu nama e membekas banget ndek hatiku, mungkin dari semua yang udah terjadi aku masih punya rasa yang buruk sama nama itu, jujur waktu sayang nyebut namane atau bilang sesuatu tentang dia aku cuma terdiam, sebenere rasane sesek, aku tau semuane udah selesai tapi mungkin karena yang udah terjadi dulu yang bikin berat, setiap krungu jenenge wonge abot rasa e yang, aku mungkin terlalu banyak kecewa sama nama iku, awamu sering nakut nakutin tentang iku "Iki barang teko ..." sebenere rasane sesek tapi aku sadar wonge masalalumu, aku percaya mbe kamu kabeh wes bar, aku wedi kabeh tentang wonge yang</p>
 
-          <p>
-            Terima kasih karena sudah hadir dalam hari-hariku. Terima kasih
-            untuk percakapan kecil kita, cerita random yang kadang nggak
-            penting tetapi tetap menyenangkan, waktu yang kita habiskan
-            bersama, dan hal-hal sederhana yang mungkin terlihat biasa
-            tetapi berarti buat aku.
-          </p>
+          <p>maaf ya yang aku nek kurang berpartisipasi ndek keluargamu, ngeliat wonge ngasih sesuatu buat keluargamu aku rasane koyok gagal, aku kemarin pengen ngasih parcell juga, makane ada aku tanya tanya penjual parcel terus DM tiktok nanya nanya parcell tapi pas iku ngepas uangku dan kebetulan sayang mau ketemu, makanya tak duluin ketemu sayang sek, waktu aku ada malah aku belum beliin, otw yang sabar, maafin ya yang, sebenere aku gak sekaku itu yang tapi ya bingung jelasinn e gimana aku kecewa sama diriku sendiri aja</p>
 
-          <p>
-            Aku suka bagaimana momen sederhana bisa berubah menjadi
-            kenangan yang ingin aku simpan. Jalan bersama, tertawa karena
-            sesuatu yang receh, saling menceritakan hari yang melelahkan,
-            atau sekadar menemani satu sama lain tanpa harus melakukan
-            sesuatu yang istimewa.
-          </p>
+          <p>yang, jaga jarak jaga hati ya yang, aku percaya kok mbe kamu aku ngerti lek kamu wes bar, minta tolong dijaga tenanan ya yang atine, fokus mbe tujuan e ae, nek ada apaa apa cerita ndek aku ya yang, lek lihat kamu marah sama aku dan kamu cerita mbe orange rasane koyok ngeroso gagal ngewehi rasa nyaman ge awamu aku yang, aku bukan musuhmu ya yang seng harus dimusuhi, aku pasanganmu, aku kadang ngerasa iri pol mbe orange, aku tau respon e berbeda, aku sadar lek aku gabisa jadi orange dan orange e gabisa jadi aku, mungkin beberapa seng kamu cari ga ada neng aku tapi aku berusaha adain meski iku bedo mbe carane orange, aku ngak pengen jadi orang lain, tapi buat kamu tak usahakne jadi senyamanmu ya yang,</p>
 
-          <p>
-            Aku juga sadar kalau hubungan kita nggak selalu berjalan mulus.
-            Kita punya pikiran masing-masing, perasaan masing-masing, dan
-            cara yang berbeda dalam menghadapi sesuatu. Ada kalanya kita
-            salah paham, ada kalanya kata-kata kita nggak tersampaikan
-            dengan baik, dan ada kalanya kita sama-sama membutuhkan waktu
-            untuk memahami keadaan.
-          </p>
-
-          <p>
-            Kalau suatu hari aku membuat kamu kecewa, aku ingin belajar
-            mendengarkan kamu dengan lebih baik. Aku nggak mau cuma sibuk
-            menjelaskan maksudku sendiri sampai lupa memahami apa yang
-            kamu rasakan. Aku juga masih belajar menjadi seseorang yang
-            bisa berkomunikasi dengan lebih tenang dan dewasa.
-          </p>
-
-          <p>
-            Aku nggak bisa menjanjikan bahwa setiap hari akan selalu
-            menyenangkan. Tapi aku berharap kita bisa terus belajar
-            menghargai satu sama lain, membicarakan masalah dengan baik,
-            dan nggak menganggap perasaan salah satu dari kita sebagai
-            sesuatu yang sepele.
-          </p>
-
-          <p>
-            Buat aku, menyayangi seseorang bukan cuma tentang mengatakan
-            hal-hal manis. Ada juga usaha untuk hadir, menghargai batasan,
-            menepati perkataan, mengakui kesalahan, dan memperbaiki hal-hal
-            yang memang perlu diperbaiki.
-          </p>
-
-          <p>
-            Aku ingin kita punya banyak kenangan baik yang bisa kita ingat
-            nanti. Bukan karena semuanya sempurna, melainkan karena kita
-            pernah berusaha membuat sesuatu yang berarti bersama-sama.
-            Aku ingin kita bisa tumbuh, mengejar tujuan masing-masing,
-            dan tetap saling mendukung tanpa kehilangan diri sendiri.
-          </p>
-
-          <p>
-            Kalau kamu sedang capek, semoga kamu ingat bahwa kamu nggak
-            harus selalu terlihat kuat. Kamu boleh bercerita, boleh
-            beristirahat, dan boleh mengambil waktu untuk dirimu sendiri.
-            Aku ingin kita bisa menjadi tempat yang nyaman untuk saling
-            bercerita, tanpa harus takut langsung dihakimi.
-          </p>
-
-          <p>
-            Terakhir, terima kasih sudah menjadi bagian dari ceritaku
-            sampai hari ini. Aku menghargai setiap waktu yang sudah kita
-            lewati. Semoga masih ada banyak hal sederhana yang bisa kita
-            tertawakan, banyak tempat yang bisa kita kunjungi, dan banyak
-            cerita baru yang bisa kita buat.
-          </p>
-
-          <p>
-            Aku menulis semua ini bukan supaya kamu harus membalas dengan
-            kata-kata yang sama. Aku cuma ingin kamu tahu bahwa aku
-            menghargai kamu, hubungan ini, dan kesempatan untuk terus
-            belajar menjadi lebih baik.
-          </p>
-
-          <p class="letter-signoff">
-            Dengan tulus,
-            <br>
-            <em>Seseorang yang sedang belajar menyayangimu dengan lebih baik ♡</em>
-          </p>
+          <p>intine makasih ya yang, maaf ya yang buat semuane, aku bingung ngomong e gimana, banyak pikiranku seng pengen tak bilangne tapi aku bingung ngomong e piye</p>
         </div>
+
+        <div class="letter-sign">♡</div>
       </article>
 
-      <button class="next-button" data-next="page3">
-        <span>Lihat kenangan kita</span><span>→</span>
-      </button>
-      <p class="page-footer">Satu halaman kecil, banyak hal yang ingin disampaikan.</p>
+      <div class="page-navigation">
+        <button class="secondary-button" data-go="1">← Sebelumnya</button>
+        <button class="primary-button" data-go="3">Lanjut melihat kenangan →</button>
+      </div>
     </section>
 
-    <!-- HALAMAN 3: VIDEO KENANGAN -->
+    <!-- HALAMAN 3: VIDEO -->
     <section class="page memory-page" id="page3">
       <header class="chapter-head">
-        <span class="chapter-number">CHAPTER 02 · OUR MEMORIES</span>
-        <button class="music-toggle" id="musicToggle2">
-          <span>♫</span><span>Musik</span>
-        </button>
+        <p class="eyebrow">halaman 02</p>
+        <h2>Sedikit kenangan kita</h2>
+        <p>Ada hal-hal sederhana yang tetap berarti.</p>
       </header>
 
       <div class="memory-content">
-        <p class="eyebrow">Some moments stay with us</p>
-        <h2>Potongan kecil<br><em>dari cerita kita.</em></h2>
-
-        <p class="muted memory-intro">
-          Mungkin waktu terus berjalan, tetapi beberapa momen akan selalu
-          punya tempat tersendiri dalam ingatan.
-        </p>
-
         <div class="video-frame">
-          <div class="video-placeholder" id="videoPlaceholder">
-            <div class="play-symbol">▶</div>
-            <strong>Our little memories</strong>
-            <span>Tambahkan video kenanganmu ke folder video/kenangan.mp4</span>
-          </div>
-
-          <video id="memoryVideo" controls playsinline preload="metadata">
+          <video
+            id="memoryVideo"
+            controls
+            playsinline
+            preload="metadata"
+            poster="images/video-poster.svg"
+          >
             <source src="video/kenangan.mp4" type="video/mp4">
-            Browser kamu tidak mendukung pemutaran video.
+            Browser kamu belum mendukung pemutaran video.
           </video>
         </div>
-
-        <p class="video-caption">
-          “Hal sederhana pun bisa menjadi kenangan yang luar biasa.”
-        </p>
-        <p class="muted">Simpan baik-baik momen yang membuat kita tersenyum.</p>
+        <p class="video-caption">Untuk kenangan yang pernah kita buat bersama ♡</p>
       </div>
 
-      <button class="next-button" data-next="page4">
-        <span>Lanjutkan cerita</span><span>→</span>
-      </button>
+      <div class="page-navigation">
+        <button class="secondary-button" data-go="2">← Kembali ke surat</button>
+        <button class="primary-button" data-go="4">Lanjut →</button>
+      </div>
     </section>
 
     <!-- HALAMAN 4: PENUTUP -->
@@ -218,30 +113,18 @@
       <div class="ending-orb"></div>
 
       <div class="ending-content">
-        <p class="eyebrow">And one last thing...</p>
-        <div class="ending-line"></div>
+        <p class="eyebrow">halaman 03</p>
+        <div class="ending-heart">♡</div>
+        <h2>Maaf dan terima kasih.</h2>
 
-        <h2>Terima kasih sudah<br><em>menjadi bagian cerita ini.</em></h2>
+        <div class="ending-note">
+          <p>intine makasih ya yang, maaf ya yang buat semuane, aku bingung ngomong e gimana, banyak pikiranku seng pengen tak bilangne tapi aku bingung ngomong e piye</p>
+        </div>
 
-        <p>
-          Aku tahu masih banyak hal yang harus aku pelajari. Aku ingin
-          terus memperbaiki diri, mendengarkan dengan lebih baik, dan
-          menghargai hal-hal kecil yang kita punya.
-        </p>
+        <p class="ending-signature">♡</p>
 
-        <p>
-          Semoga kita bisa terus bertumbuh menjadi pribadi yang lebih baik,
-          saling mendukung mimpi masing-masing, dan menciptakan kenangan
-          yang suatu hari nanti bisa kita ceritakan sambil tersenyum.
-        </p>
-
-        <p class="ending-last">
-          Sampai halaman berikutnya,
-          <br><em>with love, always ♡</em>
-        </p>
-
-        <button class="restart-button" id="restartButton">
-          <span>↺</span> Baca lagi dari awal
+        <button class="secondary-button" data-go="1">
+          Kembali ke awal
         </button>
       </div>
     </section>
